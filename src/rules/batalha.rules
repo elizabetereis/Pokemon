@@ -1,0 +1,26 @@
+ public ruleBase Batalha {
+ 
+ 
+		 rule Perdeu {
+		    declarations
+		      Agente a;
+		    conditions
+		      a.isPokemonsRecuperados == false;
+		    actions
+		      System.out.println("Você perdeu a batalha.");
+		      a.setCustoAcao(-1000);
+		      modified(a);
+		  }
+		  
+		  rule Ganhou {
+		    declarations
+		      Agente a;
+		    conditions
+		      a.isPokemonsRecuperados == true;
+		    actions
+		      System.out.println("Você ganhou a batalha");
+		      a.setCustoAcao(+150);
+		      modified(a);
+		  }
+  
+  }

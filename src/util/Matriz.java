@@ -9,11 +9,6 @@ public class Matriz {
 	private int matriz[][];
 	public int N = 42, M = 42;
 	
-//	public static void main (String args[]){
-//		
-//		new Matriz();
-//	}
-	
 	public Matriz(){
 		
 		matriz = new int[N][M];
@@ -56,12 +51,6 @@ public class Matriz {
 				}
 				
 			}
-			
-//			for(i = 0; i < N; i++, System.out.println("\n") )
-//				for(j = 0; j < M; j++)
-//					System.out.print(matriz[i][j]+" ");
-//			
-//			System.out.println("Fim de execucao.");
 		
 		} catch( Exception erro ) {
 			System.out.println("ERRO : " + erro.toString());

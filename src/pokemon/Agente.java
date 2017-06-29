@@ -16,6 +16,8 @@ public class Agente
 	protected int custoAcao;
 	
 	protected int orientacao;
+	
+	protected int quantidadePokebolas;
 
 	public Agente(String nome, ArrayList<Pokemon> pokemonsList, Vector posicao)
 	{
@@ -55,27 +57,41 @@ public class Agente
 		this.posicao = posicao;
 	}
 
-	public boolean isPokemonsRecuperados() {
+	public boolean isPokemonsRecuperados() 
+	{
 		return pokemonsRecuperados;
 	}
 
-	public void setPokemonsRecuperados(boolean pokemonsRecuperados) {
+	public void setPokemonsRecuperados(boolean pokemonsRecuperados) 
+	{
 		this.pokemonsRecuperados = pokemonsRecuperados;
 	}
 
-	public int getCustoAcao() {
+	public int getCustoAcao() 
+	{
 		return custoAcao;
 	}
 
-	public void setCustoAcao(int custoAcao) {
+	public void setCustoAcao(int custoAcao) 
+	{
 		this.custoAcao = custoAcao;
 	}
 	
 	public int getOrientacao() {
 		 Random rand = new Random();
 	       
-	     int n = rand.nextInt(4) + 1;
+	     int n = rand.nextInt(5) + 1;
 	     
 	     return n;
-	}	
+	}
+	
+	public int getQuantidadePokebolas() 
+	{
+		return quantidadePokebolas;
+	}
+
+	public void setQuantidadePokebolas(int quantidadePokebolas) 
+	{
+		this.quantidadePokebolas = quantidadePokebolas;
+	}
 }

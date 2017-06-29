@@ -59,4 +59,17 @@
 		      a.setCustoAcao(-1);
 		      modified(a);
 		  }
+		  
+		   rule UsarPokebola {
+		    declarations
+		      Agente a;
+		    conditions
+		    	a.getOrientacao() == 5;
+		    	a.getQuantidadePokebolas() > 0;
+		    actions
+		      System.out.println("Você usou uma Pokebola.");
+		      a.setQuantidadePokebolas(a.getQuantidadePokebolas() - 1)
+		      a.setCustoAcao(-5);
+		      modified(a);
+		  }
   }

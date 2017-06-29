@@ -1,6 +1,7 @@
 package pokemon;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Agente 
 {
@@ -14,6 +15,8 @@ public class Agente
 	
 	protected int custoAcao;
 	
+	protected int orientacao;
+
 	public Agente(String nome, ArrayList<Pokemon> pokemonsList, Vector posicao)
 	{
 		this.nome = nome;
@@ -68,7 +71,11 @@ public class Agente
 		this.custoAcao = custoAcao;
 	}
 	
-	
-	
-	
+	public int getOrientacao() {
+		 Random rand = new Random();
+	       
+	     int n = rand.nextInt(4) + 1;
+	     
+	     return n;
+	}	
 }

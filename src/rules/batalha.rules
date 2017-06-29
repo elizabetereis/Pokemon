@@ -1,6 +1,5 @@
  public ruleBase Batalha {
  
- 
 		 rule Perdeu {
 		    declarations
 		      Agente a;

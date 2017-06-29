@@ -80,7 +80,7 @@ public class Agente
 	public int getOrientacao() {
 		 Random rand = new Random();
 	       
-	     int n = rand.nextInt(5) + 1;
+	     int n = rand.nextInt(4) + 1;
 	     
 	     return n;
 	}

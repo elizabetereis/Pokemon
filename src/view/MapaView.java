@@ -2,6 +2,7 @@ package view;
 
 import java.awt.Color;
 import java.awt.GridLayout;
+import java.security.GeneralSecurityException;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
@@ -40,7 +41,7 @@ public class MapaView extends JFrame{
     private void confPanelTab(){
         panelTab = new JPanel(new GridLayout(42,42)); 
         criamapa();
-        adicionaElementos();
+//        adicionaElementos();
         this.add(panelTab); 
     }
     
@@ -79,6 +80,7 @@ public class MapaView extends JFrame{
     private void adicionaElementos(){
     	
     	ArrayList<Elemento> elementos = (ArrayList<Elemento>) new MapaElemento().getElementos();
+    	System.out.println("TamElemen: "+elementos.size());
     	int e = 0;
     	
     	 for(int i = 0; i < mapa.length; i++){ 
@@ -86,43 +88,51 @@ public class MapaView extends JFrame{
             	 
             	switch (elementos.get(e).getTipo()) {
 					case TipoElemento.CENTRO_POKEMON:
-//						mapa[i][j].setText("c");
+						mapa[i][j].setName("c");
 						break;
 					case TipoElemento.LOJAS_POKEMON:
-//						mapa[i][j].setText("l");
+						mapa[i][j].setName("l");
 						break;
 					case TipoElemento.TREINADOR_POKEMON:
-//						mapa[i][j].setText("t");
+						mapa[i][j].setName("t");
 						break;
 					case TipoPokemon.AGUA:
-//						mapa[i][j].setText("a");
+						mapa[i][j].setName("a");
 						break;
 					case TipoPokemon.ELETRICO:
-//						mapa[i][j].setText("e");
+						mapa[i][j].setName("e");
 						break;
 					case TipoPokemon.FOGO:
-//						mapa[i][j].setText("f");
+						mapa[i][j].setName("f");
 						break;
 					case TipoPokemon.VOADOR:
-//						mapa[i][j].setText("v");
+						mapa[i][j].setName("v");
 						break;
 					default:
-//						mapa[i][j].setText("n");
+						mapa[i][j].setName("n");
 						break;
 					}
-//            	mapa[i][j].setHorizontalTextPosition(javax.swing.SwingConstants.CENTER); 
-//            	mapa[i][j].setVerticalAlignment(javax.swing.SwingConstants.TOP); 
-//            	mapa[i][j].setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-            	mapa[i][j].setIcon(new ImageIcon(getClass().getResource("/imagem.png")));
+            	e++;
             	panelTab.add(mapa[i][j]);
              }
   
-    	 }
-    	
-    	
+    	 }	
+    }
+    
+    public String getIdMapa(int i, int j){
+    	return mapa[i][j].getText();
     }
     
     public static void main(String[] args) {
-        new MapaView();
+    	new MapaView();
+    	new MapaElemento();
+        
+//        for(int i = 0; i < 42; i++){ 
+//            for(int j = 0;j < 42; j++){ 
+//            	System.out.println("elemento: "+mapa.getIdMapa(i,j));
+//            }
+//        
+//        }
     }
+    
 }

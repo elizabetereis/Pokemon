@@ -3,6 +3,8 @@ package pokemon;
 import java.util.ArrayList;
 import java.util.Random;
 
+import util.Vector;
+
 public class Agente 
 {
 	protected String nome;

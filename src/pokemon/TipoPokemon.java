@@ -3,11 +3,11 @@ package pokemon;
 public class TipoPokemon
 {
 	
-	private final static int AGUA = 1;
+	public final static int AGUA = 4;
 	
-	private final static int ELETRICO = 2;
+	public final static int ELETRICO = 5;
 	
-	private final static int VOADOR = 3;
+	public final static int VOADOR = 6;
 	
-	private final static int FOGO = 4;
+	public final static int FOGO = 7;
 }

@@ -2,25 +2,30 @@ package pokemon;
 
 public class Elemento 
 {
-	protected TipoElemento tipo;
+	protected int tipo;
 	
 	protected Vector posicao;
 	
 	protected String identificador;	
 
-	public Elemento(TipoElemento tipo, Vector posicao, String identificador)
+	public Elemento(int tipo, Vector posicao, String identificador)
 	{
 		this.tipo = tipo;
 		this.posicao = posicao;
 		this.identificador = identificador;
 	}
+	
+	public Elemento()
+	{
+		this.tipo = -1;
+	}
 
-	public TipoElemento getTipo()
+	public int getTipo()
 	{
 		return tipo;
 	}
 
-	public void setTipo(TipoElemento tipo) 
+	public void setTipo(int tipo) 
 	{
 		this.tipo = tipo;
 	}

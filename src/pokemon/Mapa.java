@@ -3,6 +3,8 @@ package pokemon;
 import jeops.AbstractKnowledgeBase;
 
 public class Mapa extends jeops.AbstractRuleBase{
+	
+	
 
 	public Mapa(AbstractKnowledgeBase knowledgeBase) {
 		super(knowledgeBase);

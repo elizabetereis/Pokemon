@@ -9,11 +9,11 @@ public class Pokemon
 
     protected int numero;
     
-    protected TipoPokemon tipo;
+    protected int tipo;
 
     protected Vector posicao;
 
-    public Pokemon(String nome, int numero, Vector posicao, TipoPokemon tipo) 
+    public Pokemon(String nome, int numero, Vector posicao, int tipo) 
     {
         this.nome = nome;
         this.numero = numero;
@@ -21,12 +21,12 @@ public class Pokemon
         this.tipo = tipo;
     }
 
-    public TipoPokemon getTipo() 
+    public int getTipo() 
     {
 		return tipo;
 	}
 
-	public void setTipo(TipoPokemon tipo) 
+	public void setTipo(int tipo) 
 	{
 		this.tipo = tipo;
 	}

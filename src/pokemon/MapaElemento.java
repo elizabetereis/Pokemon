@@ -3,138 +3,104 @@ package pokemon;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 
+import util.CelulaMapa;
+import util.TipoElemento;
 import util.Vector;
 
 public class MapaElemento {
 	
-	private List<Elemento> mElementos;
-	ArrayList<Vector> posicoes;
 	public final static int NUM_CENTROS = 20;
 	public final static int NUM_POKEMONS = 150;
 	public final static int NUM_LOJAS = 15;
 	public final static int NUM_TREINADOR = 50;
 	public final static int TAM_MAPA = 42;
+	private CelulaMapa [][] mapa = new CelulaMapa[TAM_MAPA][TAM_MAPA];
+	private int[][] terrenoMapa = new int[TAM_MAPA][TAM_MAPA]; 
+	
 	
 	public MapaElemento(){
-		
-		mElementos = new ArrayList<Elemento>();
-		posicoes = new ArrayList<>();
-		geraPosicaoAleatorias();
-		inicializaElementos();
+		terrenoMapa = new util.Matriz().getMatriz(); //pega terrenos vindos do arquivo de texto
+		criaMapa();
 	}
 	
-	public void inicializaElementos(){
+	public List<Elemento> geraElementos(){
 		
-		Elemento centro = new Elemento(TipoElemento.CENTRO_POKEMON, new Vector(0,0), "centro");
-		Elemento pokemon = new Elemento(-1, new Vector(0,0), "pokemon");
-		Elemento pokemonAgua = new Elemento(TipoPokemon.AGUA, new Vector(0,0), "pokemon");
-		Elemento pokemonEletrico = new Elemento(TipoPokemon.ELETRICO, new Vector(0,0), "pokemon");
-		Elemento pokemonVoador = new Elemento(TipoPokemon.VOADOR, new Vector(0,0), "pokemon");
-		Elemento pokemonFogo = new Elemento(TipoPokemon.FOGO, new Vector(0,0), "pokemon");
-		Elemento loja = new Elemento(TipoElemento.LOJAS_POKEMON, new Vector(0,0), "loja");
-		Elemento treinador = new Elemento(TipoElemento.TREINADOR_POKEMON, new Vector(0,0), "treinador");
 		int iPos = 0;
-		
-//		for(int i = 0; i < posicoes.size(); i++)
-//			System.out.println("EPos: "+posicoes.get(i).toString());
+		List<Elemento> elementos = new ArrayList<Elemento>();
+		ArrayList<Vector> posicoes = geraPosicaoAleatorias();
 	
 		for(int i = 0; i < NUM_CENTROS; i++){
-			centro.setPosicao(posicoes.get(iPos));
+			elementos.add(new Elemento(TipoElemento.CENTRO_POKEMON, posicoes.get(iPos), "centro"));
 			iPos++;
-			mElementos.add(centro);
-//			System.out.println("ipos "+iPos);
 		}
 		
 		for(int i = 0; i < NUM_LOJAS; i++){
-			loja.setPosicao(posicoes.get(iPos));
+			elementos.add(new Elemento(TipoElemento.LOJAS_POKEMON, posicoes.get(iPos), "loja"));
 			iPos++;
-			mElementos.add(loja);
-//			System.out.println("ipos "+iPos);
 		}
 		
 		for(int i = 0; i < NUM_TREINADOR; i++){
-			treinador.setPosicao(posicoes.get(iPos));
+			elementos.add(new Elemento(TipoElemento.TREINADOR_POKEMON, posicoes.get(iPos), "treinador"));
 			iPos++;
-			mElementos.add(treinador);
-//			System.out.println("ipos "+iPos);
 		}
 		
 		for(int i = 0; i < NUM_POKEMONS; i++){
-			pokemon.setPosicao(posicoes.get(iPos));
+			elementos.add(new Elemento(TipoElemento.AGUA, posicoes.get(iPos), "pokemon"));
 			iPos++;
-			mElementos.add(pokemon);
-//			System.out.println("ipos "+iPos);
 		}
 		
-//		for(int i = 0; i < mElementos.size(); i++)
-//			System.out.println("EPos: "+mElementos.get(i).getPosicao().toString());
+		return elementos;
 	}
 	
 	public ArrayList<Vector> geraPosicaoAleatorias(){
 		
-		List<Integer> linhas = new ArrayList<>();
-		List<Integer> colunas = new ArrayList<>();
-		
-		for (int i = 0; i < TAM_MAPA; i++) { //inicializa números
-		    linhas.add(i);
-		    colunas.add(i);
-		}
-		
-		Collections.shuffle(linhas);//Embaralha os números:
-		Collections.shuffle(colunas);
+		ArrayList<Vector> posicoes = new ArrayList<>();
 		
 		for(int l = 0; l < TAM_MAPA; l++) { //combina linha X coluna
 			for(int c = 0; c < TAM_MAPA; c++)
 			{
-				posicoes.add(new Vector(linhas.get(l), colunas.get(c)));
-				
+				posicoes.add(new Vector(l, c));
 			}
 		}
 		
-		for(int i = 0; i < posicoes.size(); i++)
-			System.out.println("pos "+posicoes.get(i).toString());
+		Collections.shuffle(posicoes);//Embaralha os números:
 		
 		return posicoes;
 	}
 	
-	
-	public int totalElementos(){
-		return NUM_CENTROS+NUM_POKEMONS+NUM_LOJAS+NUM_TREINADOR;
+	public void criaMapa(){
+		
+		List<Elemento> elementos = geraElementos();
+		
+		for(int i = 0; i < TAM_MAPA; i++){ //preenche celulas com terreno correspondente
+			for(int j = 0; j < TAM_MAPA; j++){
+				mapa[i][j] = new CelulaMapa(terrenoMapa[i][j]);
+			}
+		}
+		
+		for(int i = 0; i < elementos.size(); i++){ //preenche celulas com elemento correspondente
+			Elemento e = elementos.get(i);
+			int x = e.getPosicao().getX();
+			int y = e.getPosicao().getY();
+			mapa[x][y].setElemento(e);
+		}
+		
+		for(int i = 0; i < TAM_MAPA; i++){
+			for(int j = 0; j < TAM_MAPA; j++){
+				System.out.println(mapa[i][j].toString());
+			}
+		}
 	}
 	
-	
-	public List<Elemento> getElementos(){
-		return mElementos;
+	public int[][] getTerrenoMapa(){
+		return terrenoMapa;
 	}
 	
-//	 public static void main(String[] args) {
-//		 
-//		 int[][]mega = new int[42][42];
-//		 Random gerador = new Random();
-//		 for(int x=0; x<42; x++) {
-//		     for(int y=0; y<42; y++) {
-//		         int n = gerador.nextInt(42) + 1;
-//		         int z = 0;
-//		         while(z < 42){
-//		             if(mega[x][z] == n){
-//		                 n = gerador.nextInt(42) + 1;    
-//		                 z = 0;
-//		             }
-//		             z++;
-//		         }
-//		         mega[x][y] = n;
-//		     }   
-//		 }
-//		 for(int x=0; x<7; x++) {
-//		     for(int y=0; y<6; y++) {
-//		         System.out.print(mega[x][y] + " ");
-//		     }
-//		     System.out.println();
-//		 }
-//
-//	 }
-//	
+	 public static void main(String[] args) {
+
+		 new MapaElemento();
+	 }
+	
 
 }

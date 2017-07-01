@@ -2,24 +2,15 @@ package view;
 
 import java.awt.Color;
 import java.awt.GridLayout;
-import java.security.GeneralSecurityException;
-import java.util.ArrayList;
-
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import pokemon.Elemento;
 import pokemon.MapaElemento;
-import pokemon.TipoElemento;
-import pokemon.TipoPokemon;
-import util.Matriz;
 
 public class MapaView extends JFrame{
     
 	private JButton[][] mapa = new JButton[42][42];
-    private int[][] terrenoMapa = new int[42][42]; 
 	private final int AGUA = 1;
     private final int GRAMA = 2;
     private final int MONTANHA = 3;
@@ -30,7 +21,6 @@ public class MapaView extends JFrame{
     MapaView(){
         
     	super("Jogo Pokemon");
-        terrenoMapa = new util.Matriz().getMatriz();
         
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
         this.setSize(1000,500); 
@@ -40,12 +30,13 @@ public class MapaView extends JFrame{
     
     private void confPanelTab(){
         panelTab = new JPanel(new GridLayout(42,42)); 
-        criamapa();
-//        adicionaElementos();
+        criaMapaTerrenos();
         this.add(panelTab); 
     }
     
-    private void criamapa(){
+    private void criaMapaTerrenos(){
+        
+        int[][] terrenoMapa = new MapaElemento().getTerrenoMapa(); 
         
     	for(int i=0; i<mapa.length; i++){ 
             for(int j=0;j<mapa[i].length; j++){ 
@@ -77,62 +68,8 @@ public class MapaView extends JFrame{
         }
     }
     
-    private void adicionaElementos(){
-    	
-    	ArrayList<Elemento> elementos = (ArrayList<Elemento>) new MapaElemento().getElementos();
-    	System.out.println("TamElemen: "+elementos.size());
-    	int e = 0;
-    	
-    	 for(int i = 0; i < mapa.length; i++){ 
-             for(int j = 0;j < mapa[i].length; j++){ 
-            	 
-            	switch (elementos.get(e).getTipo()) {
-					case TipoElemento.CENTRO_POKEMON:
-						mapa[i][j].setName("c");
-						break;
-					case TipoElemento.LOJAS_POKEMON:
-						mapa[i][j].setName("l");
-						break;
-					case TipoElemento.TREINADOR_POKEMON:
-						mapa[i][j].setName("t");
-						break;
-					case TipoPokemon.AGUA:
-						mapa[i][j].setName("a");
-						break;
-					case TipoPokemon.ELETRICO:
-						mapa[i][j].setName("e");
-						break;
-					case TipoPokemon.FOGO:
-						mapa[i][j].setName("f");
-						break;
-					case TipoPokemon.VOADOR:
-						mapa[i][j].setName("v");
-						break;
-					default:
-						mapa[i][j].setName("n");
-						break;
-					}
-            	e++;
-            	panelTab.add(mapa[i][j]);
-             }
-  
-    	 }	
-    }
-    
-    public String getIdMapa(int i, int j){
-    	return mapa[i][j].getText();
-    }
-    
     public static void main(String[] args) {
     	new MapaView();
-    	new MapaElemento();
-        
-//        for(int i = 0; i < 42; i++){ 
-//            for(int j = 0;j < 42; j++){ 
-//            	System.out.println("elemento: "+mapa.getIdMapa(i,j));
-//            }
-//        
-//        }
     }
     
 }

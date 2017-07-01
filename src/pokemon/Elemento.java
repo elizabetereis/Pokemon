@@ -20,6 +20,8 @@ public class Elemento
 	public Elemento()
 	{
 		this.tipo = -1;
+		this.posicao = new Vector(-1,-1);
+		this.identificador = "";
 	}
 
 	public int getTipo()
@@ -39,7 +41,7 @@ public class Elemento
 
 	public void setPosicao(Vector posicao) 
 	{
-		this.posicao = posicao;
+		this.posicao = new Vector(posicao.getX(), posicao.getY());
 	}
 
 	public String getIdentificador()
@@ -52,6 +54,11 @@ public class Elemento
 		this.identificador = identificador;
 	}
 	
+	public String toString(){
+		return   "Tipo: "+tipo
+				+"\nId: "+identificador
+				+"\nPos: "+posicao.toString();
+	}
 	
 	
 }

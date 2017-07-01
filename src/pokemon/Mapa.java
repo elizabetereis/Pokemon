@@ -1,13 +1,15 @@
 package pokemon;
 
 import jeops.AbstractKnowledgeBase;
+import util.CelulaMapa;
 
 public class Mapa extends jeops.AbstractRuleBase{
 	
-	
+	private CelulaMapa mapa[][]; 
 
 	public Mapa(AbstractKnowledgeBase knowledgeBase) {
 		super(knowledgeBase);
+		mapa = new MapaElemento().getMapa();
 		// TODO Auto-generated constructor stub
 	}
 

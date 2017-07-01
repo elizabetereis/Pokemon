@@ -86,21 +86,15 @@ public class MapaElemento {
 			mapa[x][y].setElemento(e);
 		}
 		
-		for(int i = 0; i < TAM_MAPA; i++){
-			for(int j = 0; j < TAM_MAPA; j++){
-				System.out.println(mapa[i][j].toString());
-			}
-		}
 	}
 	
 	public int[][] getTerrenoMapa(){
 		return terrenoMapa;
 	}
 	
-	 public static void main(String[] args) {
-
-		 new MapaElemento();
-	 }
+	public CelulaMapa[][] getMapa(){
+		return mapa;
+	}
 	
 
 }

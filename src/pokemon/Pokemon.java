@@ -2,33 +2,46 @@ package pokemon;
 
 import util.Vector;
 
-public class Pokemon
-{
+public class Pokemon extends Elemento{
 
     protected String nome;
 
     protected int numero;
     
-    protected int tipo;
+    protected int tipo2;
 
-    protected Vector posicao;
-
-    public Pokemon(String nome, int numero, Vector posicao, int tipo) 
+    public Pokemon(String nome, String identificador, int numero, Vector posicao, int tipo1, int tipo2) 
     {
+    	super(tipo1, posicao, identificador);
         this.nome = nome;
         this.numero = numero;
-        this.posicao = posicao;
-        this.tipo = tipo;
+        this.tipo2 = tipo2;
     }
-
-    public int getTipo() 
+    
+    public Pokemon(String nome, String identificador, int numero, int tipo1, int tipo2) 
     {
-		return tipo;
+    	super(tipo1, new Vector(-1,-1),identificador);
+        this.nome = nome;
+        this.numero = numero;
+        this.tipo2 = tipo2;
+    }
+    
+    public Pokemon(String nome, String identificador, int numero, int tipo1) 
+    {
+    	super(tipo1, identificador);
+        this.nome = nome;
+        this.numero = numero;
+        this.tipo2 = -1;
+    }
+	
+	public int getTipo2()
+	{
+		return tipo2;
 	}
 
-	public void setTipo(int tipo) 
+	public void setTipo2(int tipo) 
 	{
-		this.tipo = tipo;
+		this.tipo2 = tipo;
 	}
 
 	public String getNome()
@@ -51,13 +64,10 @@ public class Pokemon
         this.numero = numero;
     }
 
-    public Vector getPosicao() 
-    {
-        return posicao;
-    }
-
-    public void setPosicao(Vector posicao)
-    {
-        this.posicao = posicao;
-    }
+	@Override
+	public String toString() {
+		return "Pokemon [nome=" + nome + ", numero=" + numero + ", tipo2=" + tipo2 + ", tipo=" + tipo + ", posicao="
+				+ posicao + ", identificador=" + identificador + "]";
+	}
+    
 }

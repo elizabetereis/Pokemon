@@ -17,6 +17,13 @@ public class Elemento
 		this.identificador = identificador;
 	}
 	
+	public Elemento(int tipo, String identificador)
+	{
+		this.tipo = tipo;
+		this.posicao = new Vector(0,0);
+		this.identificador = identificador;
+	}
+	
 	public Elemento()
 	{
 		this.tipo = -1;
@@ -59,6 +66,5 @@ public class Elemento
 				+"\nId: "+identificador
 				+"\nPos: "+posicao.toString();
 	}
-	
 	
 }

@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 
 import util.CelulaMapa;
+import util.RegistroPokemon;
 import util.TipoElemento;
 import util.Vector;
 
@@ -27,7 +28,8 @@ public class MapaElemento {
 	public List<Elemento> geraElementos(){
 		
 		int iPos = 0;
-		List<Elemento> elementos = new ArrayList<Elemento>();
+		ArrayList<Elemento> elementos = new ArrayList<Elemento>();
+		ArrayList<Pokemon> pokemons = new RegistroPokemon().getListaPokemons();
 		ArrayList<Vector> posicoes = geraPosicaoAleatorias();
 	
 		for(int i = 0; i < NUM_CENTROS; i++){
@@ -46,7 +48,9 @@ public class MapaElemento {
 		}
 		
 		for(int i = 0; i < NUM_POKEMONS; i++){
-			elementos.add(new Elemento(TipoElemento.AGUA, posicoes.get(iPos), "pokemon"));
+			Pokemon pokemonAux = pokemons.get(i);
+			pokemonAux.setPosicao(posicoes.get(iPos));
+			elementos.add(pokemonAux);
 			iPos++;
 		}
 		
@@ -85,7 +89,6 @@ public class MapaElemento {
 			int y = e.getPosicao().getY();
 			mapa[x][y].setElemento(e);
 		}
-		
 	}
 	
 	public int[][] getTerrenoMapa(){
@@ -96,5 +99,15 @@ public class MapaElemento {
 		return mapa;
 	}
 	
+//	public static void main(String[] args) {
+//    	
+//		CelulaMapa[][] mapa = new MapaElemento().getMapa();
+//		
+//		for(int i = 0; i < MapaElemento.TAM_MAPA; i++){
+//			for(int j = 0; j < MapaElemento.TAM_MAPA; j++){
+//				System.out.println(mapa[i][j].toString());
+//			}
+//		}
+//	}
 
 }

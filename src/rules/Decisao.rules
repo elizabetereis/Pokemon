@@ -1,0 +1,13 @@
+ public ruleBase Decisao {
+ 		  
+		  rule Andar {
+		    declarations
+		      Agente a;
+		      MapaElemento mapa;
+		    conditions
+		    	mapa.existemElementos() == false;
+		    actions
+		      a.setDecisao(1);
+		      modified(a);
+		  }
+  }

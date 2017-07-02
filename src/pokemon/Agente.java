@@ -20,6 +20,14 @@ public class Agente
 	protected int orientacao;
 	
 	protected int quantidadePokebolas;
+	
+	protected int decisao;
+	
+	public final static int ANDAR = 1;
+	public final static int USAR_POKEBOLA = 2;
+	public final static int BATALHAR = 3;
+	public final static int RECUPERAR_POKEMONS = 4;
+	public final static int LOJA = 5;
 
 	public Agente(String nome, ArrayList<Pokemon> pokemonsList, Vector posicao)
 	{
@@ -95,5 +103,13 @@ public class Agente
 	public void setQuantidadePokebolas(int quantidadePokebolas) 
 	{
 		this.quantidadePokebolas = quantidadePokebolas;
+	}
+
+	public int getDecisao() {
+		return decisao;
+	}
+
+	public void setDecisao(int decisao) {
+		this.decisao = decisao;
 	}
 }

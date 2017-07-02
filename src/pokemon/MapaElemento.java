@@ -99,32 +99,33 @@ public class MapaElemento {
 		return mapa;
 	}
 	
-	public boolean existemElementos(Vector posicao){
+	public int existemElementos(Vector posicao){
 		int col = posicao.getX();
 		int lin = posicao.getY();
 		
 		//Cima
 		if( (lin > 0)  && (this.mapa[col][lin-1].temElemento())){
-			return true;
+			return this.mapa[col][lin-1].getElemento().getTipo();
 		}
 		
 		//Baixo
 		if( (lin < TAM_MAPA)  && (this.mapa[col][lin+1].temElemento())){
-			return true;
+			return this.mapa[col][lin+1].getElemento().getTipo();
 		}
 		
 		//Direita
 		if( (col < TAM_MAPA)  && (this.mapa[col+1][lin].temElemento())){
-			return true;
+			return this.mapa[col+1][lin].getElemento().getTipo();
 		}
 		
 		//Esquerda
 		if( (col > 0)  && (this.mapa[col-1][lin].temElemento())){
-			return true;
+			return this.mapa[col-1][lin].getElemento().getTipo();
 		}
 		
-		return false;
-	}	
+		return -1;
+	}
+	
 	
 
 	

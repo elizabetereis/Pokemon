@@ -1,4 +1,4 @@
- public ruleBase Acoes {
+ public ruleBase Andar {
  
 		 rule Cima {
 		    declarations
@@ -9,7 +9,7 @@
 		    actions
 		      System.out.println("Você andou para cima.");
 		      posicaoAtual = a.getPosicao();
-		      Vector v = new Vector(posicaoAtual.getX(), posicaoAtual.getY() - 1)
+		      Vector v = new Vector(posicaoAtual.getX(), posicaoAtual.getY() - 1);
 		      a.setPosicao(v);
 		      a.setCustoAcao(-1);
 		      modified(a);
@@ -24,7 +24,7 @@
 		    actions
 		      System.out.println("Você andou para baixo.");
 		      posicaoAtual = a.getPosicao();
-		      Vector v = new Vector(posicaoAtual.getX(), posicaoAtual.getY() + 1)
+		      Vector v = new Vector(posicaoAtual.getX(), posicaoAtual.getY() + 1);
 		      a.setPosicao(v);
 		      a.setCustoAcao(-1);
 		      modified(a);
@@ -39,7 +39,7 @@
 		    actions
 		      System.out.println("Você andou para direita.");
 		      posicaoAtual = a.getPosicao();
-		      Vector v = new Vector(posicaoAtual.getX() + 1, posicaoAtual.getY())
+		      Vector v = new Vector(posicaoAtual.getX() + 1, posicaoAtual.getY());
 		      a.setPosicao(v);
 		      a.setCustoAcao(-1);
 		      modified(a);
@@ -54,23 +54,9 @@
 		    actions
 		      System.out.println("Você andou para esquerda.");
 		      posicaoAtual = a.getPosicao();
-		      Vector v = new Vector(posicaoAtual.getX() - 1, posicaoAtual.getY())
+		      Vector v = new Vector(posicaoAtual.getX() - 1, posicaoAtual.getY());
 		      a.setPosicao(v);
 		      a.setCustoAcao(-1);
-		      modified(a);
-		  }
-		  
-		   rule UsarPokebola {
-		    declarations
-		      Agente a;
-		      MapaElemento mapa;
-		    conditions
-		    	a.getQuantidadePokebolas() > 0;
-		    	mapa[a.getPosicao().getX()][a.getPosicao().getY()].getElemento().ehUmPokemon() == true;
-		    actions
-		      System.out.println("Você usou uma Pokebola.");
-		      a.setQuantidadePokebolas(a.getQuantidadePokebolas() - 1)
-		      a.setCustoAcao(-5);
 		      modified(a);
 		  }
   }

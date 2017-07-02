@@ -67,4 +67,11 @@ public class Elemento
 				+"\nPos: "+posicao.toString();
 	}
 	
+	public boolean ehUmPokemon(){
+		if(this.tipo >= 4 ){
+			return true;
+		}
+		return false;
+	}
+	
 }

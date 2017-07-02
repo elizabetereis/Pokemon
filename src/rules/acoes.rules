@@ -63,8 +63,10 @@
 		   rule UsarPokebola {
 		    declarations
 		      Agente a;
+		      MapaElemento mapa;
 		    conditions
 		    	a.getQuantidadePokebolas() > 0;
+		    	mapa[a.getPosicao().getX()][a.getPosicao().getY()].getElemento().ehUmPokemon() == true;
 		    actions
 		      System.out.println("Você usou uma Pokebola.");
 		      a.setQuantidadePokebolas(a.getQuantidadePokebolas() - 1)

@@ -99,6 +99,33 @@ public class MapaElemento {
 		return mapa;
 	}
 	
+	public boolean existemElementos(Vector posicao){
+		int col = posicao.getX();
+		int lin = posicao.getY();
+		
+		//Cima
+		if( (lin > 0)  && (this.mapa[col][lin-1].temElemento())){
+			return true;
+		}
+		
+		//Baixo
+		if( (lin < TAM_MAPA)  && (this.mapa[col][lin+1].temElemento())){
+			return true;
+		}
+		
+		//Direita
+		if( (col < TAM_MAPA)  && (this.mapa[col+1][lin].temElemento())){
+			return true;
+		}
+		
+		//Esquerda
+		if( (col > 0)  && (this.mapa[col-1][lin].temElemento())){
+			return true;
+		}
+		
+		return false;
+	}
+	
 //	public static void main(String[] args) {
 //    	
 //		CelulaMapa[][] mapa = new MapaElemento().getMapa();

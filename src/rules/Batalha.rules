@@ -4,7 +4,7 @@
 		    declarations
 		      Agente a;
 		    conditions
-		      a.isPokemonsRecuperados == false;
+		      a.isPokemonsRecuperados() == false;
 		    actions
 		      System.out.println("Você perdeu a batalha.");
 		      a.setCustoAcao(-1000);
@@ -15,7 +15,7 @@
 		    declarations
 		      Agente a;
 		    conditions
-		      a.isPokemonsRecuperados == true;
+		      a.isPokemonsRecuperados() == true;
 		    actions
 		      System.out.println("Você ganhou a batalha");
 		      a.setCustoAcao(+150);

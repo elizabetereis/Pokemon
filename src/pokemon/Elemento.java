@@ -1,5 +1,6 @@
 package pokemon;
 
+
 import util.Vector;
 
 public class Elemento 

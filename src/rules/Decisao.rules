@@ -5,7 +5,7 @@
 		      Agente a;
 		      MapaElemento mapa;
 		    conditions
-		    	mapa.existemElementos() == false;
+		    	mapa.existemElementos(a.getPosicao()) != -1;
 		    actions
 		      a.setDecisao(1);
 		      modified(a);

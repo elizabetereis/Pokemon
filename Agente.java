@@ -22,7 +22,7 @@ public class Agente
 	
 	protected int decisao;
 	
-	public final static int ANDAR = 1;
+	public final static int ANDAR_ALEATORIAMENTE = 1;
 	public final static int USAR_POKEBOLA = 2;
 	public final static int BATALHAR = 3;
 	public final static int RECUPERAR_POKEMONS = 4;

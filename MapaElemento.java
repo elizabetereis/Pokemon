@@ -18,6 +18,7 @@ public class MapaElemento {
 	public MapaElemento(){
 		terrenoMapa = new Matriz().getMatriz(); //pega terrenos vindos do arquivo de texto
 		criaMapa();
+		printMapa();
 	}
 	
 	public List<Elemento> geraElementos(){
@@ -75,6 +76,7 @@ public class MapaElemento {
 		for(int i = 0; i < TAM_MAPA; i++){ //preenche celulas com terreno correspondente
 			for(int j = 0; j < TAM_MAPA; j++){
 				mapa[i][j] = new CelulaMapa(terrenoMapa[i][j]);
+				mapa[i][j].setElemento(new Elemento());
 			}
 		}
 		
@@ -142,7 +144,17 @@ public class MapaElemento {
 		return -1;
 	}
 	
-	
+	public void printMapa(){
+		
+		for(int i = 0; i < TAM_MAPA; i++){
+			for(int j = 0; j < TAM_MAPA; j++){
+				if(i == 24 && j == 19)
+					System.out.print("["+mapa[i][j].getElemento().getTipo()+"]");
+				System.out.print(mapa[i][j].getElemento().getTipo()+" ");
+			}
+			System.out.println();
+		}
+	}
 
 	
 //	public static void main(String[] args) {

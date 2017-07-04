@@ -26,7 +26,7 @@ public class Agente
 	public final static int USAR_POKEBOLA = 2;
 	public final static int BATALHAR = 3;
 	public final static int RECUPERAR_POKEMONS = 4;
-	public final static int LOJA = 5;
+	public final static int COMPRAR = 5;
 
 	public Agente(String nome, ArrayList<Pokemon> pokemonsList, Vector posicao)
 	{
@@ -43,6 +43,7 @@ public class Agente
 		this.posicao = posicao;
 		this.pokemonsRecuperados = true;
 		this.quantidadePokebolas = qtdBolas;
+		this.decisao = -1;
 	}
 
 	public String getNome() 

@@ -1,7 +1,6 @@
-package pokemon;
+
 
 import jeops.AbstractKnowledgeBase;
-import util.CelulaMapa;
 
 public class Mapa extends jeops.AbstractRuleBase{
 	

@@ -1,4 +1,4 @@
-package util;
+
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -26,7 +26,7 @@ public class Matriz {
 		BufferedReader leArquivo;
 		StringTokenizer leLinhaArquivo;
 		int i = -1, j = 0;
-		String nomeArquivo = "src/util/matriz.txt";
+		String nomeArquivo = "matriz.txt";
 		
 		try 
 		{

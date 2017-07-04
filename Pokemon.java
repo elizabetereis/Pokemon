@@ -1,7 +1,3 @@
-package pokemon;
-
-import util.Vector;
-
 public class Pokemon extends Elemento{
 
     protected String nome;

@@ -1,5 +1,6 @@
-package pokemon;
-   class Jeops_RuleBase_Decisao extends jeops.AbstractRuleBase {
+
+
+class Jeops_RuleBase_Decisao extends jeops.AbstractRuleBase {
  		  
 		  
     /**

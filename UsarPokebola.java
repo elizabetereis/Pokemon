@@ -1,4 +1,3 @@
-package pokemon;
    class Jeops_RuleBase_UsarPokebola extends jeops.AbstractRuleBase {
 		  
     /**
@@ -116,13 +115,13 @@ package pokemon;
     /**
      * Condition 1 of rule UsarPokebola.<p>
      * The original expression was:<br>
-     * <code>mapa[a.getPosicao().getX()][a.getPosicao().getY()].getElemento().ehUmPokemon()</code>
+     * <code>mapa.getMapa()[a.getPosicao().getX()][a.getPosicao().getY()].getElemento().ehUmPokemon()</code>
      *
      * @return <code>true</code> if the condition is satisfied;
      *          <code>false</code> otherwise.
      */
     private boolean UsarPokebola_cond_1() {
-        return (MapaElemento_1[Agente_1.getPosicao().getX()][Agente_1.getPosicao().getY()].getElemento().ehUmPokemon());
+        return (MapaElemento_1.getMapa()[Agente_1.getPosicao().getX()][Agente_1.getPosicao().getY()].getElemento().ehUmPokemon());
     }
 
     /**
@@ -184,7 +183,7 @@ package pokemon;
      * Executes the action part of the rule UsarPokebola
      */
     private void UsarPokebola() {
-		      System.out.println("Você usou uma Pokebola.");
+		      System.out.println("Vocï¿½ usou uma Pokebola.");
 		      Agente_1.setQuantidadePokebolas(Agente_1.getQuantidadePokebolas() - 1);
 		      Agente_1.setCustoAcao(-5);
 		      modified(Agente_1);
@@ -426,7 +425,7 @@ package pokemon;
 /**
  * Knowledge base created by JEOPS from file UsarPokebola.rules
  *
- * @version 03/07/2017
+ * @version Jul 3, 2017
  */
 public class UsarPokebola extends jeops.AbstractKnowledgeBase {
 

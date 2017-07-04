@@ -1,6 +1,4 @@
-package util;
 
-import pokemon.Elemento;
 
 public class CelulaMapa {
 	

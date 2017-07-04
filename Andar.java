@@ -1,8 +1,4 @@
-package pokemon;
-
-import util.Vector;
-
-class Jeops_RuleBase_Andar extends jeops.AbstractRuleBase {
+   class Jeops_RuleBase_Andar extends jeops.AbstractRuleBase {
  
 		 
     /**
@@ -174,7 +170,7 @@ class Jeops_RuleBase_Andar extends jeops.AbstractRuleBase {
      * Executes the action part of the rule Cima
      */
     private void Cima() {
-		      System.out.println("Você andou para cima.");
+		      System.out.println("Vocï¿½ andou para cima.");
 		      Vector_1 = Agente_1.getPosicao();
 		      Vector v = new Vector(Vector_1.getX(), Vector_1.getY() - 1);
 		      Agente_1.setPosicao(v);
@@ -354,7 +350,7 @@ class Jeops_RuleBase_Andar extends jeops.AbstractRuleBase {
      * Executes the action part of the rule Baixo
      */
     private void Baixo() {
-		      System.out.println("Você andou para baixo.");
+		      System.out.println("Vocï¿½ andou para baixo.");
 		      Vector_1 = Agente_1.getPosicao();
 		      Vector v = new Vector(Vector_1.getX(), Vector_1.getY() + 1);
 		      Agente_1.setPosicao(v);
@@ -534,7 +530,7 @@ class Jeops_RuleBase_Andar extends jeops.AbstractRuleBase {
      * Executes the action part of the rule Direita
      */
     private void Direita() {
-		      System.out.println("Você andou para direita.");
+		      System.out.println("Vocï¿½ andou para direita.");
 		      Vector_1 = Agente_1.getPosicao();
 		      Vector v = new Vector(Vector_1.getX() + 1, Vector_1.getY());
 		      Agente_1.setPosicao(v);
@@ -714,7 +710,7 @@ class Jeops_RuleBase_Andar extends jeops.AbstractRuleBase {
      * Executes the action part of the rule Esquerda
      */
     private void Esquerda() {
-		      System.out.println("Você andou para esquerda.");
+		      System.out.println("Vocï¿½ andou para esquerda.");
 		      Vector_1 = Agente_1.getPosicao();
 		      Vector v = new Vector(Vector_1.getX() - 1, Vector_1.getY());
 		      Agente_1.setPosicao(v);
@@ -1000,7 +996,7 @@ class Jeops_RuleBase_Andar extends jeops.AbstractRuleBase {
 /**
  * Knowledge base created by JEOPS from file Andar.rules
  *
- * @version 03/07/2017
+ * @version Jul 3, 2017
  */
 public class Andar extends jeops.AbstractKnowledgeBase {
 

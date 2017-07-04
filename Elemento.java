@@ -1,8 +1,3 @@
-package pokemon;
-
-
-import util.Vector;
-
 public class Elemento 
 {
 	protected int tipo;

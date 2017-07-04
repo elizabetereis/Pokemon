@@ -1,10 +1,8 @@
-package util;
+
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
-
-import pokemon.Pokemon;
 
 public class RegistroPokemon {
 	
@@ -24,7 +22,7 @@ public class RegistroPokemon {
 	public void leArquivo() {
 		
 		BufferedReader leArquivo;
-		String nomeArquivo = "src/util/listaPokemons.txt";
+		String nomeArquivo = "listaPokemons.txt";
 		
 		try 
 		{

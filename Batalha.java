@@ -1,5 +1,6 @@
-package pokemon;
-   class Jeops_RuleBase_Batalha extends jeops.AbstractRuleBase {
+
+
+class Jeops_RuleBase_Batalha extends jeops.AbstractRuleBase {
  
 		 
     /**
@@ -160,7 +161,7 @@ package pokemon;
      * Executes the action part of the rule Perdeu
      */
     private void Perdeu() {
-		      System.out.println("Você perdeu a batalha.");
+		      System.out.println("Vocï¿½ perdeu a batalha.");
 		      Agente_1.setCustoAcao(-1000);
 		      modified(Agente_1);
 		      }
@@ -326,7 +327,7 @@ package pokemon;
      * Executes the action part of the rule Ganhou
      */
     private void Ganhou() {
-		      System.out.println("Você ganhou a batalha");
+		      System.out.println("Vocï¿½ ganhou a batalha");
 		      Agente_1.setCustoAcao(+150);
 		      modified(Agente_1);
 		      }

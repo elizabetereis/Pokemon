@@ -1,13 +1,8 @@
-package pokemon;
+
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
-import util.CelulaMapa;
-import util.RegistroPokemon;
-import util.TipoElemento;
-import util.Vector;
 
 public class MapaElemento {
 	
@@ -21,7 +16,7 @@ public class MapaElemento {
 	
 	
 	public MapaElemento(){
-		terrenoMapa = new util.Matriz().getMatriz(); //pega terrenos vindos do arquivo de texto
+		terrenoMapa = new Matriz().getMatriz(); //pega terrenos vindos do arquivo de texto
 		criaMapa();
 	}
 	

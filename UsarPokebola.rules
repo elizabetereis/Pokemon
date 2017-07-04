@@ -5,9 +5,9 @@
 		      MapaElemento mapa;
 		    conditions
 		    	a.getQuantidadePokebolas() > 0;
-		    	mapa[a.getPosicao().getX()][a.getPosicao().getY()].getElemento().ehUmPokemon();
+		    	mapa.getMapa()[a.getPosicao().getX()][a.getPosicao().getY()].getElemento().ehUmPokemon();
 		    actions
-		      System.out.println("Você usou uma Pokebola.");
+		      System.out.println("Vocï¿½ usou uma Pokebola.");
 		      a.setQuantidadePokebolas(a.getQuantidadePokebolas() - 1);
 		      a.setCustoAcao(-5);
 		      modified(a);

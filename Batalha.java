@@ -1,6 +1,4 @@
-
-
-class Jeops_RuleBase_Batalha extends jeops.AbstractRuleBase {
+   class Jeops_RuleBase_Batalha extends jeops.AbstractRuleBase {
  
 		 
     /**
@@ -582,7 +580,7 @@ class Jeops_RuleBase_Batalha extends jeops.AbstractRuleBase {
 /**
  * Knowledge base created by JEOPS from file Batalha.rules
  *
- * @version 03/07/2017
+ * @version Jul 4, 2017
  */
 public class Batalha extends jeops.AbstractKnowledgeBase {
 

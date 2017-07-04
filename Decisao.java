@@ -1,6 +1,4 @@
-
-
-class Jeops_RuleBase_Decisao extends jeops.AbstractRuleBase {
+   class Jeops_RuleBase_Decisao extends jeops.AbstractRuleBase {
  		  
 		  
     /**
@@ -173,6 +171,7 @@ class Jeops_RuleBase_Decisao extends jeops.AbstractRuleBase {
      */
     private void Andar() {
 		      Agente_1.setDecisao(1);
+		      System.out.println("tomei essa decisao");
 		      modified(Agente_1);
 		      }
 
@@ -412,7 +411,7 @@ class Jeops_RuleBase_Decisao extends jeops.AbstractRuleBase {
 /**
  * Knowledge base created by JEOPS from file Decisao.rules
  *
- * @version 03/07/2017
+ * @version Jul 4, 2017
  */
 public class Decisao extends jeops.AbstractKnowledgeBase {
 

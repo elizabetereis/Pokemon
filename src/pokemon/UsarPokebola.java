@@ -116,13 +116,13 @@ package pokemon;
     /**
      * Condition 1 of rule UsarPokebola.<p>
      * The original expression was:<br>
-     * <code>mapa[a.getPosicao().getX()][a.getPosicao().getY()].getElemento().ehUmPokemon()</code>
+     * <code>mapa.getMapa()[a.getPosicao().getX()][a.getPosicao().getY()].getElemento().ehUmPokemon()</code>
      *
      * @return <code>true</code> if the condition is satisfied;
      *          <code>false</code> otherwise.
      */
     private boolean UsarPokebola_cond_1() {
-        return (MapaElemento_1[Agente_1.getPosicao().getX()][Agente_1.getPosicao().getY()].getElemento().ehUmPokemon());
+        return (MapaElemento_1.getMapa()[Agente_1.getPosicao().getX()][Agente_1.getPosicao().getY()].getElemento().ehUmPokemon());
     }
 
     /**

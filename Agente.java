@@ -121,4 +121,30 @@ public class Agente
 	public void setDecisao(int decisao) {
 		this.decisao = decisao;
 	}
+	
+	public boolean temPokemonAgua()
+	{
+		int i = 0;
+		for(i=0; i < this.getPokemonsList().size(); i++){
+			 
+			if(this.getPokemonsList().get(i).getTipo() == 4){
+				return true; 
+			}
+		}
+		
+		return false;
+	}
+	
+	public boolean temPokemonFogo()
+	{
+		int i = 0;
+		for(i=0; i < this.getPokemonsList().size(); i++){
+			 
+			if(this.getPokemonsList().get(i).getTipo() == 7){
+				return true; 
+			}
+		}
+		
+		return false;
+	}
 }

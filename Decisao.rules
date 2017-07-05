@@ -2,85 +2,80 @@
  		  
 		  rule AndarAleatoriamente {
 		    declarations
-		      Agente a;
-		      MapaElemento mapa;
+		        AgenteMapa am;
 		    conditions
-		    	mapa.existemElementosCima(a.getPosicao()) == -1;
-		    	mapa.existemElementosBaixo(a.getPosicao()) == -1;
-		    	mapa.existemElementosDireita(a.getPosicao()) == -1;
-		    	mapa.existemElementosEsquerda(a.getPosicao()) == -1;
+		    	am.getMapa().existemElementosCima(am.getAgente().getPosicao()) == -1;
+				am.getMapa().existemElementosBaixo(am.getAgente().getPosicao()) == -1;
+				am.getMapa().existemElementosDireita(am.getAgente().getPosicao()) == -1; 
+				am.getMapa().existemElementosEsquerda(am.getAgente().getPosicao()) == -1;
 		    actions
-		      a.setDecisao(1);
-		      modified(a);
+		      am.getAgente().setDecisao(1);
+		      modified(am);
 		  }
 		  
 		  rule UsarPokebola {
 		    declarations
-		      Agente a;
-		      MapaElemento mapa;
+		      AgenteMapa am;
 		    conditions
-		    	mapa.existemElementosCima(a.getPosicao()) >= 4 ||
-		    	mapa.existemElementosBaixo(a.getPosicao()) >= 4 || 
-		    	mapa.existemElementosEsquerda(a.getPosicao()) >= 4 ||
-		    	mapa.existemElementosDireita(a.getPosicao()) >= 4;
-		    	a.getQuantidadePokebolas() > 0;
+		    	am.getMapa().existemElementosCima(am.getAgente().getPosicao()) >= 4 ||
+		    	am.getMapa().existemElementosBaixo(am.getAgente().getPosicao()) >= 4 || 
+		    	am.getMapa().existemElementosEsquerda(am.getAgente().getPosicao()) >= 4 ||
+		    	am.getMapa().existemElementosDireita(am.getAgente().getPosicao()) >= 4;
+		    	am.getAgente().getQuantidadePokebolas() > 0;
 		    actions
-		      a.setDecisao(2);
-		      modified(a);
+		      am.getAgente().setDecisao(2);
+		      modified(am);
 		  }
 		  
 		  rule Batalhar {
 		    declarations
-		      Agente a;
-		      MapaElemento mapa;
+		      AgenteMapa am;
 		    conditions
-		    	mapa.existemElementosCima(a.getPosicao()) == 3;
-		    	mapa.existemElementosCima(a.getPosicao()) < 4;
-		    	mapa.existemElementosBaixo(a.getPosicao()) < 4;
-		    	mapa.existemElementosDireita(a.getPosicao()) < 4;
-		    	mapa.existemElementosEsquerda(a.getPosicao()) < 4;
-		    	(mapa.existemElementosCima(a.getPosicao()) != 1 &&
-		    	mapa.existemElementosBaixo(a.getPosicao()) != 1 &&
-		    	mapa.existemElementosDireita(a.getPosicao()) != 1 &&
-		    	mapa.existemElementosEsquerda(a.getPosicao()) != 1)||
-		    	(((mapa.existemElementosCima(a.getPosicao()) == 1)||
-		    	(mapa.existemElementosBaixo(a.getPosicao()) == 1) ||
-		    	(mapa.existemElementosDireita(a.getPosicao()) == 1)||
-		    	(mapa.existemElementosEsquerda(a.getPosicao()) == 1)) && 
-		    	a.isPokemonsRecuperados());	
+		    	am.getMapa().existemElementosCima(am.getAgente().getPosicao()) == 3;
+		    	am.getMapa().existemElementosCima(am.getAgente().getPosicao()) < 4;
+		    	am.getMapa().existemElementosBaixo(am.getAgente().getPosicao()) < 4;
+		    	am.getMapa().existemElementosDireita(am.getAgente().getPosicao()) < 4;
+		    	am.getMapa().existemElementosEsquerda(am.getAgente().getPosicao()) < 4;
+		    	(am.getMapa().existemElementosCima(am.getAgente().getPosicao()) != 1 &&
+		    	am.getMapa().existemElementosBaixo(am.getAgente().getPosicao()) != 1 &&
+		    	am.getMapa().existemElementosDireita(am.getAgente().getPosicao()) != 1 &&
+		    	am.getMapa().existemElementosEsquerda(am.getAgente().getPosicao()) != 1)||
+		    	(((am.getMapa().existemElementosCima(am.getAgente().getPosicao()) == 1)||
+		    	(am.getMapa().existemElementosBaixo(am.getAgente().getPosicao()) == 1) ||
+		    	(am.getMapa().existemElementosDireita(am.getAgente().getPosicao()) == 1)||
+		    	(am.getMapa().existemElementosEsquerda(am.getAgente().getPosicao()) == 1)) && 
+		    	am.getAgente().isPokemonsRecuperados());	
 		    actions
-		      a.setDecisao(3);
-		      modified(a);
+		      am.getAgente().setDecisao(3);
+		      modified(am);
 		  }
 		  
 		  rule RecuperarPokemons {
 		    declarations
-		      Agente a;
-		      MapaElemento mapa;
+		      AgenteMapa am;
 		    conditions
-		    	mapa.existemElementosCima(a.getPosicao()) == 1;
-		    	mapa.existemElementosBaixo(a.getPosicao()) == 1;
-		    	mapa.existemElementosDireita(a.getPosicao()) == 1;
-		    	mapa.existemElementosEsquerda(a.getPosicao()) == 1;
-		    	!a.isPokemonsRecuperados();
+		    	am.getMapa().existemElementosCima(am.getAgente().getPosicao()) == 1;
+		    	am.getMapa().existemElementosBaixo(am.getAgente().getPosicao()) == 1;
+		    	am.getMapa().existemElementosDireita(am.getAgente().getPosicao()) == 1;
+		    	am.getMapa().existemElementosEsquerda(am.getAgente().getPosicao()) == 1;
+		    	!am.getAgente().isPokemonsRecuperados();
 		    actions
-		      a.setDecisao(4);
-		      modified(a);
+		      am.getAgente().setDecisao(4);
+		      modified(am);
 		  }
 		  
-		    rule ComprarPokebolas {
+		  rule ComprarPokebolas {
 		    declarations
-		      Agente a;
-		      MapaElemento mapa;
+		      AgenteMapa am;
 		    conditions
-		    	mapa.existemElementosCima(a.getPosicao()) == 2 ||
-		    	mapa.existemElementosBaixo(a.getPosicao()) == 2 ||
-		    	mapa.existemElementosDireita(a.getPosicao()) == 2 ||
-		    	mapa.existemElementosEsquerda(a.getPosicao()) == 2;
-		    	a.getQuantidadePokebolas() == 0;
+		    	am.getMapa().existemElementosCima(am.getAgente().getPosicao()) == 2 ||
+		    	am.getMapa().existemElementosBaixo(am.getAgente().getPosicao()) == 2 ||
+		    	am.getMapa().existemElementosDireita(am.getAgente().getPosicao()) == 2 ||
+		    	am.getMapa().existemElementosEsquerda(am.getAgente().getPosicao()) == 2;
+		    	am.getAgente().getQuantidadePokebolas() == 0;
 		    actions
-		      a.setDecisao(5);
-		      modified(a);
+		      am.getAgente().setDecisao(5);
+		      modified(am);
 		  }
 		  
   }

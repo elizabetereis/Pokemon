@@ -2,24 +2,23 @@
  
 		 rule Perdeu {
 		    declarations
-		      Agente a;
+		      AgenteMapa am;
 		    conditions
-		      a.isPokemonsRecuperados() == false;
+		      am.getAgente().isPokemonsRecuperados() == false;
 		    actions
-		      System.out.println("Você perdeu a batalha.");
-		      a.setCustoAcao(-1000);
-		      modified(a);
+		      System.out.println("Você perdeu a batalham.");
+		      am.getAgente().setCustoAcao(-1000);
+		      modified(am);
 		  }
 		  
 		  rule Ganhou {
 		    declarations
-		      Agente a;
+		      AgenteMapa am;
 		    conditions
-		      a.isPokemonsRecuperados() == true;
+		      am.getAgente().isPokemonsRecuperados() == true;
 		    actions
 		      System.out.println("Você ganhou a batalha");
-		      a.setCustoAcao(+150);
-		      modified(a);
+		      am.getAgente().setCustoAcao(+150);
+		      modified(am);
 		  }
-  
   }

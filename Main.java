@@ -18,26 +18,26 @@ public class Main {
 		decisaoBase.tell(mapa);
 		decisaoBase.run();
 		
-		if(agente.getDecisao() == agente.ANDAR)
-		{
-			andarBase.tell(agente);
-			andarBase.run();
-		}
-		else if(agente.getDecisao() == agente.BATALHAR){
-			batalhaBase.tell(agente);
-			batalhaBase.run();
-		}
-		else if(agente.getDecisao() == agente.COMPRAR){
-			batalhaBase.tell(agente);
-			batalhaBase.run();
-		}
-		else if(agente.getDecisao() == agente.RECUPERAR_POKEMONS){
-			batalhaBase.tell(agente);
-		}
-		else if(agente.getDecisao() == agente.USAR_POKEBOLA){
-			pokebolaBase.tell(agente);
-			pokebolaBase.run();
-		}
+//		if(agente.getDecisao() == agente.ANDAR)
+//		{
+//			andarBase.tell(agente);
+//			andarBase.run();
+//		}
+//		else if(agente.getDecisao() == agente.BATALHAR){
+//			batalhaBase.tell(agente);
+//			batalhaBase.run();
+//		}
+//		else if(agente.getDecisao() == agente.COMPRAR){
+//			batalhaBase.tell(agente);
+//			batalhaBase.run();
+//		}
+//		else if(agente.getDecisao() == agente.RECUPERAR_POKEMONS){
+//			batalhaBase.tell(agente);
+//		}
+//		else if(agente.getDecisao() == agente.USAR_POKEBOLA){
+//			pokebolaBase.tell(agente);
+//			pokebolaBase.run();
+//		}
 		
 	}
 

@@ -5,8 +5,7 @@
      * Identifiers of rule AndarAleatoriamente
      */
     private String[] identifiers_AndarAleatoriamente = {
-        "a",
-        "mapa"
+        "am"
     };
 
     /**
@@ -28,8 +27,7 @@
      */
     private String getDeclaredClassName_AndarAleatoriamente(int index) {
         switch (index) {
-            case 0: return "Agente";
-            case 1: return "MapaElemento";
+            case 0: return "AgenteMapa";
             default: return null;
         }
     }
@@ -42,8 +40,7 @@
      */
     private Class getDeclaredClass_AndarAleatoriamente(int index) {
         switch (index) {
-            case 0: return Agente.class;
-            case 1: return MapaElemento.class;
+            case 0: return AgenteMapa.class;
             default: return null;
         }
     }
@@ -56,8 +53,7 @@
      */
     private void setObject_AndarAleatoriamente(int index, Object value) {
         switch (index) {
-            case 0: this.Agente_1 = (Agente) value; break;
-            case 1: this.MapaElemento_1 = (MapaElemento) value; break;
+            case 0: this.AgenteMapa_1 = (AgenteMapa) value; break;
         }
     }
 
@@ -69,8 +65,7 @@
      */
     private Object getObject_AndarAleatoriamente(int index) {
         switch (index) {
-            case 0: return Agente_1;
-            case 1: return MapaElemento_1;
+            case 0: return AgenteMapa_1;
             default: return null;
         }
     }
@@ -84,8 +79,7 @@
      */
     private Object[] getObjects_AndarAleatoriamente() {
         return new Object[] {
-                            Agente_1,
-                            MapaElemento_1
+                            AgenteMapa_1
                             };
     }
 
@@ -97,56 +91,55 @@
      *          declarations of this rule.
      */
     private void setObjects_AndarAleatoriamente(Object[] objects) {
-        Agente_1 = (Agente) objects[0];
-        MapaElemento_1 = (MapaElemento) objects[1];
+        AgenteMapa_1 = (AgenteMapa) objects[0];
     }
 
     /**
      * Condition 0 of rule AndarAleatoriamente.<p>
      * The original expression was:<br>
-     * <code>mapa.existemElementosCima(a.getPosicao()) == -1</code>
+     * <code>am.getMapa().existemElementosCima(am.getAgente().getPosicao()) == -1</code>
      *
      * @return <code>true</code> if the condition is satisfied;
      *          <code>false</code> otherwise.
      */
     private boolean AndarAleatoriamente_cond_0() {
-        return (MapaElemento_1.existemElementosCima(Agente_1.getPosicao()) == -1);
+        return (AgenteMapa_1.getMapa().existemElementosCima(AgenteMapa_1.getAgente().getPosicao()) == -1);
     }
 
     /**
      * Condition 1 of rule AndarAleatoriamente.<p>
      * The original expression was:<br>
-     * <code>mapa.existemElementosBaixo(a.getPosicao()) == -1</code>
+     * <code>am.getMapa().existemElementosBaixo(am.getAgente().getPosicao()) == -1</code>
      *
      * @return <code>true</code> if the condition is satisfied;
      *          <code>false</code> otherwise.
      */
     private boolean AndarAleatoriamente_cond_1() {
-        return (MapaElemento_1.existemElementosBaixo(Agente_1.getPosicao()) == -1);
+        return (AgenteMapa_1.getMapa().existemElementosBaixo(AgenteMapa_1.getAgente().getPosicao()) == -1);
     }
 
     /**
      * Condition 2 of rule AndarAleatoriamente.<p>
      * The original expression was:<br>
-     * <code>mapa.existemElementosDireita(a.getPosicao()) == -1</code>
+     * <code>am.getMapa().existemElementosDireita(am.getAgente().getPosicao()) == -1</code>
      *
      * @return <code>true</code> if the condition is satisfied;
      *          <code>false</code> otherwise.
      */
     private boolean AndarAleatoriamente_cond_2() {
-        return (MapaElemento_1.existemElementosDireita(Agente_1.getPosicao()) == -1);
+        return (AgenteMapa_1.getMapa().existemElementosDireita(AgenteMapa_1.getAgente().getPosicao()) == -1);
     }
 
     /**
      * Condition 3 of rule AndarAleatoriamente.<p>
      * The original expression was:<br>
-     * <code>mapa.existemElementosEsquerda(a.getPosicao()) == -1</code>
+     * <code>am.getMapa().existemElementosEsquerda(am.getAgente().getPosicao()) == -1</code>
      *
      * @return <code>true</code> if the condition is satisfied;
      *          <code>false</code> otherwise.
      */
     private boolean AndarAleatoriamente_cond_3() {
-        return (MapaElemento_1.existemElementosEsquerda(Agente_1.getPosicao()) == -1);
+        return (AgenteMapa_1.getMapa().existemElementosEsquerda(AgenteMapa_1.getAgente().getPosicao()) == -1);
     }
 
     /**
@@ -177,8 +170,10 @@
     private boolean checkConditionsOnlyOf_AndarAleatoriamente(int declIndex) {
         switch (declIndex) {
             case 0:
-                return true;
-            case 1:
+                if (!AndarAleatoriamente_cond_0()) return false;
+                if (!AndarAleatoriamente_cond_1()) return false;
+                if (!AndarAleatoriamente_cond_2()) return false;
+                if (!AndarAleatoriamente_cond_3()) return false;
                 return true;
             default: return false;
         }
@@ -198,12 +193,6 @@
         switch (declIndex) {
             case 0:
                 return true;
-            case 1:
-                if (!AndarAleatoriamente_cond_0()) return false;
-                if (!AndarAleatoriamente_cond_1()) return false;
-                if (!AndarAleatoriamente_cond_2()) return false;
-                if (!AndarAleatoriamente_cond_3()) return false;
-                return true;
             default: return false;
         }
     }
@@ -212,8 +201,8 @@
      * Executes the action part of the rule AndarAleatoriamente
      */
     private void AndarAleatoriamente() {
-		      Agente_1.setDecisao(1);
-		      modified(Agente_1);
+		      AgenteMapa_1.getAgente().setDecisao(1);
+		      modified(AgenteMapa_1);
 		      }
 
 
@@ -223,8 +212,7 @@
      * Identifiers of rule UsarPokebola
      */
     private String[] identifiers_UsarPokebola = {
-        "a",
-        "mapa"
+        "am"
     };
 
     /**
@@ -246,8 +234,7 @@
      */
     private String getDeclaredClassName_UsarPokebola(int index) {
         switch (index) {
-            case 0: return "Agente";
-            case 1: return "MapaElemento";
+            case 0: return "AgenteMapa";
             default: return null;
         }
     }
@@ -260,8 +247,7 @@
      */
     private Class getDeclaredClass_UsarPokebola(int index) {
         switch (index) {
-            case 0: return Agente.class;
-            case 1: return MapaElemento.class;
+            case 0: return AgenteMapa.class;
             default: return null;
         }
     }
@@ -274,8 +260,7 @@
      */
     private void setObject_UsarPokebola(int index, Object value) {
         switch (index) {
-            case 0: this.Agente_1 = (Agente) value; break;
-            case 1: this.MapaElemento_1 = (MapaElemento) value; break;
+            case 0: this.AgenteMapa_1 = (AgenteMapa) value; break;
         }
     }
 
@@ -287,8 +272,7 @@
      */
     private Object getObject_UsarPokebola(int index) {
         switch (index) {
-            case 0: return Agente_1;
-            case 1: return MapaElemento_1;
+            case 0: return AgenteMapa_1;
             default: return null;
         }
     }
@@ -302,8 +286,7 @@
      */
     private Object[] getObjects_UsarPokebola() {
         return new Object[] {
-                            Agente_1,
-                            MapaElemento_1
+                            AgenteMapa_1
                             };
     }
 
@@ -315,38 +298,37 @@
      *          declarations of this rule.
      */
     private void setObjects_UsarPokebola(Object[] objects) {
-        Agente_1 = (Agente) objects[0];
-        MapaElemento_1 = (MapaElemento) objects[1];
+        AgenteMapa_1 = (AgenteMapa) objects[0];
     }
 
     /**
      * Condition 0 of rule UsarPokebola.<p>
      * The original expression was:<br>
-     * <code>mapa.existemElementosCima(a.getPosicao()) >= 4 ||
-		    	mapa.existemElementosBaixo(a.getPosicao()) >= 4 || 
-		    	mapa.existemElementosEsquerda(a.getPosicao()) >= 4 ||
-		    	mapa.existemElementosDireita(a.getPosicao()) >= 4</code>
+     * <code>am.getMapa().existemElementosCima(am.getAgente().getPosicao()) >= 4 ||
+		    	am.getMapa().existemElementosBaixo(am.getAgente().getPosicao()) >= 4 || 
+		    	am.getMapa().existemElementosEsquerda(am.getAgente().getPosicao()) >= 4 ||
+		    	am.getMapa().existemElementosDireita(am.getAgente().getPosicao()) >= 4</code>
      *
      * @return <code>true</code> if the condition is satisfied;
      *          <code>false</code> otherwise.
      */
     private boolean UsarPokebola_cond_0() {
-        return (MapaElemento_1.existemElementosCima(Agente_1.getPosicao()) >= 4 ||
-		    	MapaElemento_1.existemElementosBaixo(Agente_1.getPosicao()) >= 4 || 
-		    	MapaElemento_1.existemElementosEsquerda(Agente_1.getPosicao()) >= 4 ||
-		    	MapaElemento_1.existemElementosDireita(Agente_1.getPosicao()) >= 4);
+        return (AgenteMapa_1.getMapa().existemElementosCima(AgenteMapa_1.getAgente().getPosicao()) >= 4 ||
+		    	AgenteMapa_1.getMapa().existemElementosBaixo(AgenteMapa_1.getAgente().getPosicao()) >= 4 || 
+		    	AgenteMapa_1.getMapa().existemElementosEsquerda(AgenteMapa_1.getAgente().getPosicao()) >= 4 ||
+		    	AgenteMapa_1.getMapa().existemElementosDireita(AgenteMapa_1.getAgente().getPosicao()) >= 4);
     }
 
     /**
      * Condition 1 of rule UsarPokebola.<p>
      * The original expression was:<br>
-     * <code>a.getQuantidadePokebolas() > 0</code>
+     * <code>am.getAgente().getQuantidadePokebolas() > 0</code>
      *
      * @return <code>true</code> if the condition is satisfied;
      *          <code>false</code> otherwise.
      */
     private boolean UsarPokebola_cond_1() {
-        return (Agente_1.getQuantidadePokebolas() > 0);
+        return (AgenteMapa_1.getAgente().getQuantidadePokebolas() > 0);
     }
 
     /**
@@ -375,9 +357,8 @@
     private boolean checkConditionsOnlyOf_UsarPokebola(int declIndex) {
         switch (declIndex) {
             case 0:
+                if (!UsarPokebola_cond_0()) return false;
                 if (!UsarPokebola_cond_1()) return false;
-                return true;
-            case 1:
                 return true;
             default: return false;
         }
@@ -397,9 +378,6 @@
         switch (declIndex) {
             case 0:
                 return true;
-            case 1:
-                if (!UsarPokebola_cond_0()) return false;
-                return true;
             default: return false;
         }
     }
@@ -408,8 +386,8 @@
      * Executes the action part of the rule UsarPokebola
      */
     private void UsarPokebola() {
-		      Agente_1.setDecisao(2);
-		      modified(Agente_1);
+		      AgenteMapa_1.getAgente().setDecisao(2);
+		      modified(AgenteMapa_1);
 		      }
 
 
@@ -419,8 +397,7 @@
      * Identifiers of rule Batalhar
      */
     private String[] identifiers_Batalhar = {
-        "a",
-        "mapa"
+        "am"
     };
 
     /**
@@ -442,8 +419,7 @@
      */
     private String getDeclaredClassName_Batalhar(int index) {
         switch (index) {
-            case 0: return "Agente";
-            case 1: return "MapaElemento";
+            case 0: return "AgenteMapa";
             default: return null;
         }
     }
@@ -456,8 +432,7 @@
      */
     private Class getDeclaredClass_Batalhar(int index) {
         switch (index) {
-            case 0: return Agente.class;
-            case 1: return MapaElemento.class;
+            case 0: return AgenteMapa.class;
             default: return null;
         }
     }
@@ -470,8 +445,7 @@
      */
     private void setObject_Batalhar(int index, Object value) {
         switch (index) {
-            case 0: this.Agente_1 = (Agente) value; break;
-            case 1: this.MapaElemento_1 = (MapaElemento) value; break;
+            case 0: this.AgenteMapa_1 = (AgenteMapa) value; break;
         }
     }
 
@@ -483,8 +457,7 @@
      */
     private Object getObject_Batalhar(int index) {
         switch (index) {
-            case 0: return Agente_1;
-            case 1: return MapaElemento_1;
+            case 0: return AgenteMapa_1;
             default: return null;
         }
     }
@@ -498,8 +471,7 @@
      */
     private Object[] getObjects_Batalhar() {
         return new Object[] {
-                            Agente_1,
-                            MapaElemento_1
+                            AgenteMapa_1
                             };
     }
 
@@ -511,96 +483,95 @@
      *          declarations of this rule.
      */
     private void setObjects_Batalhar(Object[] objects) {
-        Agente_1 = (Agente) objects[0];
-        MapaElemento_1 = (MapaElemento) objects[1];
+        AgenteMapa_1 = (AgenteMapa) objects[0];
     }
 
     /**
      * Condition 0 of rule Batalhar.<p>
      * The original expression was:<br>
-     * <code>mapa.existemElementosCima(a.getPosicao()) == 3</code>
+     * <code>am.getMapa().existemElementosCima(am.getAgente().getPosicao()) == 3</code>
      *
      * @return <code>true</code> if the condition is satisfied;
      *          <code>false</code> otherwise.
      */
     private boolean Batalhar_cond_0() {
-        return (MapaElemento_1.existemElementosCima(Agente_1.getPosicao()) == 3);
+        return (AgenteMapa_1.getMapa().existemElementosCima(AgenteMapa_1.getAgente().getPosicao()) == 3);
     }
 
     /**
      * Condition 1 of rule Batalhar.<p>
      * The original expression was:<br>
-     * <code>mapa.existemElementosCima(a.getPosicao()) < 4</code>
+     * <code>am.getMapa().existemElementosCima(am.getAgente().getPosicao()) < 4</code>
      *
      * @return <code>true</code> if the condition is satisfied;
      *          <code>false</code> otherwise.
      */
     private boolean Batalhar_cond_1() {
-        return (MapaElemento_1.existemElementosCima(Agente_1.getPosicao()) < 4);
+        return (AgenteMapa_1.getMapa().existemElementosCima(AgenteMapa_1.getAgente().getPosicao()) < 4);
     }
 
     /**
      * Condition 2 of rule Batalhar.<p>
      * The original expression was:<br>
-     * <code>mapa.existemElementosBaixo(a.getPosicao()) < 4</code>
+     * <code>am.getMapa().existemElementosBaixo(am.getAgente().getPosicao()) < 4</code>
      *
      * @return <code>true</code> if the condition is satisfied;
      *          <code>false</code> otherwise.
      */
     private boolean Batalhar_cond_2() {
-        return (MapaElemento_1.existemElementosBaixo(Agente_1.getPosicao()) < 4);
+        return (AgenteMapa_1.getMapa().existemElementosBaixo(AgenteMapa_1.getAgente().getPosicao()) < 4);
     }
 
     /**
      * Condition 3 of rule Batalhar.<p>
      * The original expression was:<br>
-     * <code>mapa.existemElementosDireita(a.getPosicao()) < 4</code>
+     * <code>am.getMapa().existemElementosDireita(am.getAgente().getPosicao()) < 4</code>
      *
      * @return <code>true</code> if the condition is satisfied;
      *          <code>false</code> otherwise.
      */
     private boolean Batalhar_cond_3() {
-        return (MapaElemento_1.existemElementosDireita(Agente_1.getPosicao()) < 4);
+        return (AgenteMapa_1.getMapa().existemElementosDireita(AgenteMapa_1.getAgente().getPosicao()) < 4);
     }
 
     /**
      * Condition 4 of rule Batalhar.<p>
      * The original expression was:<br>
-     * <code>mapa.existemElementosEsquerda(a.getPosicao()) < 4</code>
+     * <code>am.getMapa().existemElementosEsquerda(am.getAgente().getPosicao()) < 4</code>
      *
      * @return <code>true</code> if the condition is satisfied;
      *          <code>false</code> otherwise.
      */
     private boolean Batalhar_cond_4() {
-        return (MapaElemento_1.existemElementosEsquerda(Agente_1.getPosicao()) < 4);
+        return (AgenteMapa_1.getMapa().existemElementosEsquerda(AgenteMapa_1.getAgente().getPosicao()) < 4);
     }
 
     /**
      * Condition 5 of rule Batalhar.<p>
      * The original expression was:<br>
-     * <code>(mapa.existemElementosCima(a.getPosicao()) != 1 &&
-		    	mapa.existemElementosBaixo(a.getPosicao()) != 1 &&
-		    	mapa.existemElementosDireita(a.getPosicao()) != 1 &&
-		    	mapa.existemElementosEsquerda(a.getPosicao()) != 1)||
-		    	(((mapa.existemElementosCima(a.getPosicao()) == 1)||
-		    	(mapa.existemElementosBaixo(a.getPosicao()) == 1) ||
-		    	(mapa.existemElementosDireita(a.getPosicao()) == 1)||
-		    	(mapa.existemElementosEsquerda(a.getPosicao()) == 1)) && 
-		    	a.isPokemonsRecuperados())</code>
+     * <code>(am.getMapa().existemElementosCima(am.getAgente().getPosicao()) != 1 &&
+		    	am.getMapa().existemElementosBaixo(am.getAgente().getPosicao()) != 1 &&
+		    	am.getMapa().existemElementosDireita(am.getAgente().getPosicao()) != 1 &&
+		    	am.getMapa().existemElementosEsquerda(am.getAgente().getPosicao()) != 1)||
+		    	(((am.getMapa().existemElementosCima(am.getAgente().getPosicao()) == 1)||
+		    	(am.getMapa().existemElementosBaixo(am.getAgente().getPosicao()) == 1) ||
+		    	(am.getMapa().existemElementosDireita(am.getAgente().getPosicao()) == 1)||
+		    	(am.getMapa().existemElementosEsquerda(am.getAgente().getPosicao()) == 1)) && 
+		    	am.getAgente().isPokemonsRecuperados())</code>
      *
      * @return <code>true</code> if the condition is satisfied;
      *          <code>false</code> otherwise.
      */
     private boolean Batalhar_cond_5() {
-        return ((MapaElemento_1.existemElementosCima(Agente_1.getPosicao()) != 1 &&
-		    	MapaElemento_1.existemElementosBaixo(Agente_1.getPosicao()) != 1 &&
-		    	MapaElemento_1.existemElementosDireita(Agente_1.getPosicao()) != 1 &&
-		    	MapaElemento_1.existemElementosEsquerda(Agente_1.getPosicao()) != 1)||
-		    	(((MapaElemento_1.existemElementosCima(Agente_1.getPosicao()) == 1)||
-		    	(MapaElemento_1.existemElementosBaixo(Agente_1.getPosicao()) == 1) ||
-		    	(MapaElemento_1.existemElementosDireita(Agente_1.getPosicao()) == 1)||
-		    	(MapaElemento_1.existemElementosEsquerda(Agente_1.getPosicao()) == 1)) && 
-		    	Agente_1.isPokemonsRecuperados()));
+        return ((AgenteMapa_1.getMapa().existemElementosCima(AgenteMapa_1.getAgente().getPosicao()) != 1 &&
+		    	AgenteMapa_1.getMapa().existemElementosBaixo(AgenteMapa_1.getAgente().getPosicao()) != 1 &&
+		    	AgenteMapa_1.getMapa().existemElementosDireita(AgenteMapa_1.getAgente().getPosicao()) != 1 &&
+		    	AgenteMapa_1.getMapa().existemElementosEsquerda(AgenteMapa_1.getAgente().getPosicao()) != 1)||
+		    	(((AgenteMapa_1.getMapa().existemElementosCima(AgenteMapa_1.getAgente().getPosicao()) == 1)||
+		    	(AgenteMapa_1.getMapa().existemElementosBaixo(AgenteMapa_1.getAgente().getPosicao()) == 1) ||
+		    	(AgenteMapa_1.getMapa().existemElementosDireita(AgenteMapa_1.getAgente().getPosicao()) == 1)||
+		    	(AgenteMapa_1.getMapa().existemElementosEsquerda(AgenteMapa_1.getAgente().getPosicao()) == 1)) && 
+		    	AgenteMapa_1.getAgente().isPokemonsRecuperados()));
     }
 
     /**
@@ -633,8 +604,12 @@
     private boolean checkConditionsOnlyOf_Batalhar(int declIndex) {
         switch (declIndex) {
             case 0:
-                return true;
-            case 1:
+                if (!Batalhar_cond_0()) return false;
+                if (!Batalhar_cond_1()) return false;
+                if (!Batalhar_cond_2()) return false;
+                if (!Batalhar_cond_3()) return false;
+                if (!Batalhar_cond_4()) return false;
+                if (!Batalhar_cond_5()) return false;
                 return true;
             default: return false;
         }
@@ -654,14 +629,6 @@
         switch (declIndex) {
             case 0:
                 return true;
-            case 1:
-                if (!Batalhar_cond_0()) return false;
-                if (!Batalhar_cond_1()) return false;
-                if (!Batalhar_cond_2()) return false;
-                if (!Batalhar_cond_3()) return false;
-                if (!Batalhar_cond_4()) return false;
-                if (!Batalhar_cond_5()) return false;
-                return true;
             default: return false;
         }
     }
@@ -670,8 +637,8 @@
      * Executes the action part of the rule Batalhar
      */
     private void Batalhar() {
-		      Agente_1.setDecisao(3);
-		      modified(Agente_1);
+		      AgenteMapa_1.getAgente().setDecisao(3);
+		      modified(AgenteMapa_1);
 		      }
 
 
@@ -681,8 +648,7 @@
      * Identifiers of rule RecuperarPokemons
      */
     private String[] identifiers_RecuperarPokemons = {
-        "a",
-        "mapa"
+        "am"
     };
 
     /**
@@ -704,8 +670,7 @@
      */
     private String getDeclaredClassName_RecuperarPokemons(int index) {
         switch (index) {
-            case 0: return "Agente";
-            case 1: return "MapaElemento";
+            case 0: return "AgenteMapa";
             default: return null;
         }
     }
@@ -718,8 +683,7 @@
      */
     private Class getDeclaredClass_RecuperarPokemons(int index) {
         switch (index) {
-            case 0: return Agente.class;
-            case 1: return MapaElemento.class;
+            case 0: return AgenteMapa.class;
             default: return null;
         }
     }
@@ -732,8 +696,7 @@
      */
     private void setObject_RecuperarPokemons(int index, Object value) {
         switch (index) {
-            case 0: this.Agente_1 = (Agente) value; break;
-            case 1: this.MapaElemento_1 = (MapaElemento) value; break;
+            case 0: this.AgenteMapa_1 = (AgenteMapa) value; break;
         }
     }
 
@@ -745,8 +708,7 @@
      */
     private Object getObject_RecuperarPokemons(int index) {
         switch (index) {
-            case 0: return Agente_1;
-            case 1: return MapaElemento_1;
+            case 0: return AgenteMapa_1;
             default: return null;
         }
     }
@@ -760,8 +722,7 @@
      */
     private Object[] getObjects_RecuperarPokemons() {
         return new Object[] {
-                            Agente_1,
-                            MapaElemento_1
+                            AgenteMapa_1
                             };
     }
 
@@ -773,68 +734,67 @@
      *          declarations of this rule.
      */
     private void setObjects_RecuperarPokemons(Object[] objects) {
-        Agente_1 = (Agente) objects[0];
-        MapaElemento_1 = (MapaElemento) objects[1];
+        AgenteMapa_1 = (AgenteMapa) objects[0];
     }
 
     /**
      * Condition 0 of rule RecuperarPokemons.<p>
      * The original expression was:<br>
-     * <code>mapa.existemElementosCima(a.getPosicao()) == 1</code>
+     * <code>am.getMapa().existemElementosCima(am.getAgente().getPosicao()) == 1</code>
      *
      * @return <code>true</code> if the condition is satisfied;
      *          <code>false</code> otherwise.
      */
     private boolean RecuperarPokemons_cond_0() {
-        return (MapaElemento_1.existemElementosCima(Agente_1.getPosicao()) == 1);
+        return (AgenteMapa_1.getMapa().existemElementosCima(AgenteMapa_1.getAgente().getPosicao()) == 1);
     }
 
     /**
      * Condition 1 of rule RecuperarPokemons.<p>
      * The original expression was:<br>
-     * <code>mapa.existemElementosBaixo(a.getPosicao()) == 1</code>
+     * <code>am.getMapa().existemElementosBaixo(am.getAgente().getPosicao()) == 1</code>
      *
      * @return <code>true</code> if the condition is satisfied;
      *          <code>false</code> otherwise.
      */
     private boolean RecuperarPokemons_cond_1() {
-        return (MapaElemento_1.existemElementosBaixo(Agente_1.getPosicao()) == 1);
+        return (AgenteMapa_1.getMapa().existemElementosBaixo(AgenteMapa_1.getAgente().getPosicao()) == 1);
     }
 
     /**
      * Condition 2 of rule RecuperarPokemons.<p>
      * The original expression was:<br>
-     * <code>mapa.existemElementosDireita(a.getPosicao()) == 1</code>
+     * <code>am.getMapa().existemElementosDireita(am.getAgente().getPosicao()) == 1</code>
      *
      * @return <code>true</code> if the condition is satisfied;
      *          <code>false</code> otherwise.
      */
     private boolean RecuperarPokemons_cond_2() {
-        return (MapaElemento_1.existemElementosDireita(Agente_1.getPosicao()) == 1);
+        return (AgenteMapa_1.getMapa().existemElementosDireita(AgenteMapa_1.getAgente().getPosicao()) == 1);
     }
 
     /**
      * Condition 3 of rule RecuperarPokemons.<p>
      * The original expression was:<br>
-     * <code>mapa.existemElementosEsquerda(a.getPosicao()) == 1</code>
+     * <code>am.getMapa().existemElementosEsquerda(am.getAgente().getPosicao()) == 1</code>
      *
      * @return <code>true</code> if the condition is satisfied;
      *          <code>false</code> otherwise.
      */
     private boolean RecuperarPokemons_cond_3() {
-        return (MapaElemento_1.existemElementosEsquerda(Agente_1.getPosicao()) == 1);
+        return (AgenteMapa_1.getMapa().existemElementosEsquerda(AgenteMapa_1.getAgente().getPosicao()) == 1);
     }
 
     /**
      * Condition 4 of rule RecuperarPokemons.<p>
      * The original expression was:<br>
-     * <code>!a.isPokemonsRecuperados()</code>
+     * <code>!am.getAgente().isPokemonsRecuperados()</code>
      *
      * @return <code>true</code> if the condition is satisfied;
      *          <code>false</code> otherwise.
      */
     private boolean RecuperarPokemons_cond_4() {
-        return (!Agente_1.isPokemonsRecuperados());
+        return (!AgenteMapa_1.getAgente().isPokemonsRecuperados());
     }
 
     /**
@@ -866,9 +826,11 @@
     private boolean checkConditionsOnlyOf_RecuperarPokemons(int declIndex) {
         switch (declIndex) {
             case 0:
+                if (!RecuperarPokemons_cond_0()) return false;
+                if (!RecuperarPokemons_cond_1()) return false;
+                if (!RecuperarPokemons_cond_2()) return false;
+                if (!RecuperarPokemons_cond_3()) return false;
                 if (!RecuperarPokemons_cond_4()) return false;
-                return true;
-            case 1:
                 return true;
             default: return false;
         }
@@ -888,12 +850,6 @@
         switch (declIndex) {
             case 0:
                 return true;
-            case 1:
-                if (!RecuperarPokemons_cond_0()) return false;
-                if (!RecuperarPokemons_cond_1()) return false;
-                if (!RecuperarPokemons_cond_2()) return false;
-                if (!RecuperarPokemons_cond_3()) return false;
-                return true;
             default: return false;
         }
     }
@@ -902,19 +858,18 @@
      * Executes the action part of the rule RecuperarPokemons
      */
     private void RecuperarPokemons() {
-		      Agente_1.setDecisao(4);
-		      modified(Agente_1);
+		      AgenteMapa_1.getAgente().setDecisao(4);
+		      modified(AgenteMapa_1);
 		      }
 
 
 		  
-		    
+		  
     /**
      * Identifiers of rule ComprarPokebolas
      */
     private String[] identifiers_ComprarPokebolas = {
-        "a",
-        "mapa"
+        "am"
     };
 
     /**
@@ -936,8 +891,7 @@
      */
     private String getDeclaredClassName_ComprarPokebolas(int index) {
         switch (index) {
-            case 0: return "Agente";
-            case 1: return "MapaElemento";
+            case 0: return "AgenteMapa";
             default: return null;
         }
     }
@@ -950,8 +904,7 @@
      */
     private Class getDeclaredClass_ComprarPokebolas(int index) {
         switch (index) {
-            case 0: return Agente.class;
-            case 1: return MapaElemento.class;
+            case 0: return AgenteMapa.class;
             default: return null;
         }
     }
@@ -964,8 +917,7 @@
      */
     private void setObject_ComprarPokebolas(int index, Object value) {
         switch (index) {
-            case 0: this.Agente_1 = (Agente) value; break;
-            case 1: this.MapaElemento_1 = (MapaElemento) value; break;
+            case 0: this.AgenteMapa_1 = (AgenteMapa) value; break;
         }
     }
 
@@ -977,8 +929,7 @@
      */
     private Object getObject_ComprarPokebolas(int index) {
         switch (index) {
-            case 0: return Agente_1;
-            case 1: return MapaElemento_1;
+            case 0: return AgenteMapa_1;
             default: return null;
         }
     }
@@ -992,8 +943,7 @@
      */
     private Object[] getObjects_ComprarPokebolas() {
         return new Object[] {
-                            Agente_1,
-                            MapaElemento_1
+                            AgenteMapa_1
                             };
     }
 
@@ -1005,38 +955,37 @@
      *          declarations of this rule.
      */
     private void setObjects_ComprarPokebolas(Object[] objects) {
-        Agente_1 = (Agente) objects[0];
-        MapaElemento_1 = (MapaElemento) objects[1];
+        AgenteMapa_1 = (AgenteMapa) objects[0];
     }
 
     /**
      * Condition 0 of rule ComprarPokebolas.<p>
      * The original expression was:<br>
-     * <code>mapa.existemElementosCima(a.getPosicao()) == 2 ||
-		    	mapa.existemElementosBaixo(a.getPosicao()) == 2 ||
-		    	mapa.existemElementosDireita(a.getPosicao()) == 2 ||
-		    	mapa.existemElementosEsquerda(a.getPosicao()) == 2</code>
+     * <code>am.getMapa().existemElementosCima(am.getAgente().getPosicao()) == 2 ||
+		    	am.getMapa().existemElementosBaixo(am.getAgente().getPosicao()) == 2 ||
+		    	am.getMapa().existemElementosDireita(am.getAgente().getPosicao()) == 2 ||
+		    	am.getMapa().existemElementosEsquerda(am.getAgente().getPosicao()) == 2</code>
      *
      * @return <code>true</code> if the condition is satisfied;
      *          <code>false</code> otherwise.
      */
     private boolean ComprarPokebolas_cond_0() {
-        return (MapaElemento_1.existemElementosCima(Agente_1.getPosicao()) == 2 ||
-		    	MapaElemento_1.existemElementosBaixo(Agente_1.getPosicao()) == 2 ||
-		    	MapaElemento_1.existemElementosDireita(Agente_1.getPosicao()) == 2 ||
-		    	MapaElemento_1.existemElementosEsquerda(Agente_1.getPosicao()) == 2);
+        return (AgenteMapa_1.getMapa().existemElementosCima(AgenteMapa_1.getAgente().getPosicao()) == 2 ||
+		    	AgenteMapa_1.getMapa().existemElementosBaixo(AgenteMapa_1.getAgente().getPosicao()) == 2 ||
+		    	AgenteMapa_1.getMapa().existemElementosDireita(AgenteMapa_1.getAgente().getPosicao()) == 2 ||
+		    	AgenteMapa_1.getMapa().existemElementosEsquerda(AgenteMapa_1.getAgente().getPosicao()) == 2);
     }
 
     /**
      * Condition 1 of rule ComprarPokebolas.<p>
      * The original expression was:<br>
-     * <code>a.getQuantidadePokebolas() == 0</code>
+     * <code>am.getAgente().getQuantidadePokebolas() == 0</code>
      *
      * @return <code>true</code> if the condition is satisfied;
      *          <code>false</code> otherwise.
      */
     private boolean ComprarPokebolas_cond_1() {
-        return (Agente_1.getQuantidadePokebolas() == 0);
+        return (AgenteMapa_1.getAgente().getQuantidadePokebolas() == 0);
     }
 
     /**
@@ -1065,9 +1014,8 @@
     private boolean checkConditionsOnlyOf_ComprarPokebolas(int declIndex) {
         switch (declIndex) {
             case 0:
+                if (!ComprarPokebolas_cond_0()) return false;
                 if (!ComprarPokebolas_cond_1()) return false;
-                return true;
-            case 1:
                 return true;
             default: return false;
         }
@@ -1087,9 +1035,6 @@
         switch (declIndex) {
             case 0:
                 return true;
-            case 1:
-                if (!ComprarPokebolas_cond_0()) return false;
-                return true;
             default: return false;
         }
     }
@@ -1098,8 +1043,8 @@
      * Executes the action part of the rule ComprarPokebolas
      */
     private void ComprarPokebolas() {
-		      Agente_1.setDecisao(5);
-		      modified(Agente_1);
+		      AgenteMapa_1.getAgente().setDecisao(5);
+		      modified(AgenteMapa_1);
 		      }
 
 
@@ -1129,11 +1074,11 @@
      * The number of declarations of the rules in this class file.
      */
     private static final int[] File_numberOfDeclarations = {
-        2,
-        2,
-        2,
-        2,
-        2
+        1,
+        1,
+        1,
+        1,
+        1
     };
 
     /**
@@ -1378,8 +1323,7 @@
     /*
      * The variables declared in the rules.
      */
-    private Agente Agente_1;
-    private MapaElemento MapaElemento_1;
+    private AgenteMapa AgenteMapa_1;
 
     /**
      * Class constructor.
@@ -1395,7 +1339,7 @@
 /**
  * Knowledge base created by JEOPS from file Decisao.rules
  *
- * @version 04/07/2017
+ * @version 05/07/2017
  */
 public class Decisao extends jeops.AbstractKnowledgeBase {
 

@@ -5,7 +5,7 @@
      * Identifiers of rule Perdeu
      */
     private String[] identifiers_Perdeu = {
-        "a"
+        "am"
     };
 
     /**
@@ -27,7 +27,7 @@
      */
     private String getDeclaredClassName_Perdeu(int index) {
         switch (index) {
-            case 0: return "Agente";
+            case 0: return "AgenteMapa";
             default: return null;
         }
     }
@@ -40,7 +40,7 @@
      */
     private Class getDeclaredClass_Perdeu(int index) {
         switch (index) {
-            case 0: return Agente.class;
+            case 0: return AgenteMapa.class;
             default: return null;
         }
     }
@@ -53,7 +53,7 @@
      */
     private void setObject_Perdeu(int index, Object value) {
         switch (index) {
-            case 0: this.Agente_1 = (Agente) value; break;
+            case 0: this.AgenteMapa_1 = (AgenteMapa) value; break;
         }
     }
 
@@ -65,7 +65,7 @@
      */
     private Object getObject_Perdeu(int index) {
         switch (index) {
-            case 0: return Agente_1;
+            case 0: return AgenteMapa_1;
             default: return null;
         }
     }
@@ -79,7 +79,7 @@
      */
     private Object[] getObjects_Perdeu() {
         return new Object[] {
-                            Agente_1
+                            AgenteMapa_1
                             };
     }
 
@@ -91,19 +91,19 @@
      *          declarations of this rule.
      */
     private void setObjects_Perdeu(Object[] objects) {
-        Agente_1 = (Agente) objects[0];
+        AgenteMapa_1 = (AgenteMapa) objects[0];
     }
 
     /**
      * Condition 0 of rule Perdeu.<p>
      * The original expression was:<br>
-     * <code>a.isPokemonsRecuperados() == false</code>
+     * <code>am.getAgente().isPokemonsRecuperados() == false</code>
      *
      * @return <code>true</code> if the condition is satisfied;
      *          <code>false</code> otherwise.
      */
     private boolean Perdeu_cond_0() {
-        return (Agente_1.isPokemonsRecuperados() == false);
+        return (AgenteMapa_1.getAgente().isPokemonsRecuperados() == false);
     }
 
     /**
@@ -159,9 +159,9 @@
      * Executes the action part of the rule Perdeu
      */
     private void Perdeu() {
-		      System.out.println("Vocï¿½ perdeu a batalha.");
-		      Agente_1.setCustoAcao(-1000);
-		      modified(Agente_1);
+		      System.out.println("Você perdeu a batalham.");
+		      AgenteMapa_1.getAgente().setCustoAcao(-1000);
+		      modified(AgenteMapa_1);
 		      }
 
 
@@ -171,7 +171,7 @@
      * Identifiers of rule Ganhou
      */
     private String[] identifiers_Ganhou = {
-        "a"
+        "am"
     };
 
     /**
@@ -193,7 +193,7 @@
      */
     private String getDeclaredClassName_Ganhou(int index) {
         switch (index) {
-            case 0: return "Agente";
+            case 0: return "AgenteMapa";
             default: return null;
         }
     }
@@ -206,7 +206,7 @@
      */
     private Class getDeclaredClass_Ganhou(int index) {
         switch (index) {
-            case 0: return Agente.class;
+            case 0: return AgenteMapa.class;
             default: return null;
         }
     }
@@ -219,7 +219,7 @@
      */
     private void setObject_Ganhou(int index, Object value) {
         switch (index) {
-            case 0: this.Agente_1 = (Agente) value; break;
+            case 0: this.AgenteMapa_1 = (AgenteMapa) value; break;
         }
     }
 
@@ -231,7 +231,7 @@
      */
     private Object getObject_Ganhou(int index) {
         switch (index) {
-            case 0: return Agente_1;
+            case 0: return AgenteMapa_1;
             default: return null;
         }
     }
@@ -245,7 +245,7 @@
      */
     private Object[] getObjects_Ganhou() {
         return new Object[] {
-                            Agente_1
+                            AgenteMapa_1
                             };
     }
 
@@ -257,19 +257,19 @@
      *          declarations of this rule.
      */
     private void setObjects_Ganhou(Object[] objects) {
-        Agente_1 = (Agente) objects[0];
+        AgenteMapa_1 = (AgenteMapa) objects[0];
     }
 
     /**
      * Condition 0 of rule Ganhou.<p>
      * The original expression was:<br>
-     * <code>a.isPokemonsRecuperados() == true</code>
+     * <code>am.getAgente().isPokemonsRecuperados() == true</code>
      *
      * @return <code>true</code> if the condition is satisfied;
      *          <code>false</code> otherwise.
      */
     private boolean Ganhou_cond_0() {
-        return (Agente_1.isPokemonsRecuperados() == true);
+        return (AgenteMapa_1.getAgente().isPokemonsRecuperados() == true);
     }
 
     /**
@@ -325,13 +325,12 @@
      * Executes the action part of the rule Ganhou
      */
     private void Ganhou() {
-		      System.out.println("Vocï¿½ ganhou a batalha");
-		      Agente_1.setCustoAcao(+150);
-		      modified(Agente_1);
+		      System.out.println("Você ganhou a batalha");
+		      AgenteMapa_1.getAgente().setCustoAcao(+150);
+		      modified(AgenteMapa_1);
 		      }
 
 
-  
   
     /**
      * The names of the rules in this class file
@@ -564,7 +563,7 @@
     /*
      * The variables declared in the rules.
      */
-    private Agente Agente_1;
+    private AgenteMapa AgenteMapa_1;
 
     /**
      * Class constructor.
@@ -580,7 +579,7 @@
 /**
  * Knowledge base created by JEOPS from file Batalha.rules
  *
- * @version Jul 4, 2017
+ * @version 05/07/2017
  */
 public class Batalha extends jeops.AbstractKnowledgeBase {
 

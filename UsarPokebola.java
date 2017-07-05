@@ -4,8 +4,7 @@
      * Identifiers of rule UsarPokebola
      */
     private String[] identifiers_UsarPokebola = {
-        "a",
-        "mapa"
+        "am"
     };
 
     /**
@@ -27,8 +26,7 @@
      */
     private String getDeclaredClassName_UsarPokebola(int index) {
         switch (index) {
-            case 0: return "Agente";
-            case 1: return "MapaElemento";
+            case 0: return "AgenteMapa";
             default: return null;
         }
     }
@@ -41,8 +39,7 @@
      */
     private Class getDeclaredClass_UsarPokebola(int index) {
         switch (index) {
-            case 0: return Agente.class;
-            case 1: return MapaElemento.class;
+            case 0: return AgenteMapa.class;
             default: return null;
         }
     }
@@ -55,8 +52,7 @@
      */
     private void setObject_UsarPokebola(int index, Object value) {
         switch (index) {
-            case 0: this.Agente_1 = (Agente) value; break;
-            case 1: this.MapaElemento_1 = (MapaElemento) value; break;
+            case 0: this.AgenteMapa_1 = (AgenteMapa) value; break;
         }
     }
 
@@ -68,8 +64,7 @@
      */
     private Object getObject_UsarPokebola(int index) {
         switch (index) {
-            case 0: return Agente_1;
-            case 1: return MapaElemento_1;
+            case 0: return AgenteMapa_1;
             default: return null;
         }
     }
@@ -83,8 +78,7 @@
      */
     private Object[] getObjects_UsarPokebola() {
         return new Object[] {
-                            Agente_1,
-                            MapaElemento_1
+                            AgenteMapa_1
                             };
     }
 
@@ -96,32 +90,31 @@
      *          declarations of this rule.
      */
     private void setObjects_UsarPokebola(Object[] objects) {
-        Agente_1 = (Agente) objects[0];
-        MapaElemento_1 = (MapaElemento) objects[1];
+        AgenteMapa_1 = (AgenteMapa) objects[0];
     }
 
     /**
      * Condition 0 of rule UsarPokebola.<p>
      * The original expression was:<br>
-     * <code>a.getQuantidadePokebolas() > 0</code>
+     * <code>am.getAgente().getQuantidadePokebolas() > 0</code>
      *
      * @return <code>true</code> if the condition is satisfied;
      *          <code>false</code> otherwise.
      */
     private boolean UsarPokebola_cond_0() {
-        return (Agente_1.getQuantidadePokebolas() > 0);
+        return (AgenteMapa_1.getAgente().getQuantidadePokebolas() > 0);
     }
 
     /**
      * Condition 1 of rule UsarPokebola.<p>
      * The original expression was:<br>
-     * <code>mapa.getMapa()[a.getPosicao().getX()][a.getPosicao().getY()].getElemento().ehUmPokemon()</code>
+     * <code>am.getMapa().getMapa()[am.getAgente().getPosicao().getX()][am.getAgente().getPosicao().getY()].getElemento().ehUmPokemon()</code>
      *
      * @return <code>true</code> if the condition is satisfied;
      *          <code>false</code> otherwise.
      */
     private boolean UsarPokebola_cond_1() {
-        return (MapaElemento_1.getMapa()[Agente_1.getPosicao().getX()][Agente_1.getPosicao().getY()].getElemento().ehUmPokemon());
+        return (AgenteMapa_1.getMapa().getMapa()[AgenteMapa_1.getAgente().getPosicao().getX()][AgenteMapa_1.getAgente().getPosicao().getY()].getElemento().ehUmPokemon());
     }
 
     /**
@@ -151,8 +144,7 @@
         switch (declIndex) {
             case 0:
                 if (!UsarPokebola_cond_0()) return false;
-                return true;
-            case 1:
+                if (!UsarPokebola_cond_1()) return false;
                 return true;
             default: return false;
         }
@@ -172,9 +164,6 @@
         switch (declIndex) {
             case 0:
                 return true;
-            case 1:
-                if (!UsarPokebola_cond_1()) return false;
-                return true;
             default: return false;
         }
     }
@@ -183,10 +172,10 @@
      * Executes the action part of the rule UsarPokebola
      */
     private void UsarPokebola() {
-		      System.out.println("Voc� usou uma Pokebola.");
-		      Agente_1.setQuantidadePokebolas(Agente_1.getQuantidadePokebolas() - 1);
-		      Agente_1.setCustoAcao(-5);
-		      modified(Agente_1);
+		      System.out.println("O agente capturou um pokemon.");
+		      AgenteMapa_1.getAgente().setQuantidadePokebolas(AgenteMapa_1.getAgente().getQuantidadePokebolas() - 1);
+		      AgenteMapa_1.getAgente().setCustoAcao(-5);
+		      modified(AgenteMapa_1);
 		      }
 
 
@@ -211,7 +200,7 @@
      * The number of declarations of the rules in this class file.
      */
     private static final int[] File_numberOfDeclarations = {
-        2
+        1
     };
 
     /**
@@ -408,8 +397,7 @@
     /*
      * The variables declared in the rules.
      */
-    private Agente Agente_1;
-    private MapaElemento MapaElemento_1;
+    private AgenteMapa AgenteMapa_1;
 
     /**
      * Class constructor.
@@ -425,7 +413,7 @@
 /**
  * Knowledge base created by JEOPS from file UsarPokebola.rules
  *
- * @version Jul 3, 2017
+ * @version 05/07/2017
  */
 public class UsarPokebola extends jeops.AbstractKnowledgeBase {
 

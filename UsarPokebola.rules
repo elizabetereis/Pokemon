@@ -1,15 +1,14 @@
  public ruleBase UsarPokebola {
 		  rule UsarPokebola {
 		    declarations
-		      Agente a;
-		      MapaElemento mapa;
+		     	AgenteMapa am;
 		    conditions
-		    	a.getQuantidadePokebolas() > 0;
-		    	mapa.getMapa()[a.getPosicao().getX()][a.getPosicao().getY()].getElemento().ehUmPokemon();
+		    	am.getAgente().getQuantidadePokebolas() > 0;
+		    	am.getMapa().getMapa()[am.getAgente().getPosicao().getX()][am.getAgente().getPosicao().getY()].getElemento().ehUmPokemon();
 		    actions
-		      System.out.println("Voc� usou uma Pokebola.");
-		      a.setQuantidadePokebolas(a.getQuantidadePokebolas() - 1);
-		      a.setCustoAcao(-5);
-		      modified(a);
+		      System.out.println("O agente capturou um pokemon.");
+		      am.getAgente().setQuantidadePokebolas(am.getAgente().getQuantidadePokebolas() - 1);
+		      am.getAgente().setCustoAcao(-5);
+		      modified(am);
 		  }
   }

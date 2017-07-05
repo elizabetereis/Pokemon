@@ -98,8 +98,7 @@ public class MapaElemento {
 	
 	public int existemElementosCima(Vector posicao){
 		int col = posicao.getX();
-		int lin = posicao.getY();
-		
+		int lin = posicao.getY();		
 		//Cima
 		if( (lin > 0)  && (this.mapa[col][lin-1].temElemento())){
 			return this.mapa[col][lin-1].getElemento().getTipo();

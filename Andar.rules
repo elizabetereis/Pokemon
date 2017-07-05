@@ -2,61 +2,81 @@
  
 		 rule Cima {
 		    declarations
-		      Agente a;
+		      AgenteMapa am;
 		      Vector posicaoAtual;
 		    conditions
-		    	a.getOrientacao() == 1;
+		    	am.getAgente().getOrientacao() == 1;
+		    	( (am.getMapa().getMapa()[am.getAgente().getPosicao().getX()][am.getAgente().getPosicao().getY() - 1].getTerreno() == 1 && 
+				  am.getAgente().temPokemonAgua()) ||
+		    	  (am.getMapa().getMapa()[am.getAgente().getPosicao().getX()][am.getAgente().getPosicao().getY() - 1].getTerreno() == 5 && 
+				  am.getAgente().temPokemonFogo())
+				);
 		    actions
-		      System.out.println("Você andou para cima.");
-		      posicaoAtual = a.getPosicao();
+		      System.out.println("O agente andou para cima");
+		      posicaoAtual = am.getAgente().getPosicao();
 		      Vector v = new Vector(posicaoAtual.getX(), posicaoAtual.getY() - 1);
-		      a.setPosicao(v);
-		      a.setCustoAcao(-1);
-		      modified(a);
+		      am.getAgente().setPosicao(v);
+		      am.getAgente().setCustoAcao(-1);
+		      modified(am);
 		  }
 		  
 		  rule Baixo {
 		    declarations
-		      Agente a;
+		      AgenteMapa am;
 		      Vector posicaoAtual;
 		    conditions
-		    	a.getOrientacao() == 2;
+		    	am.getAgente().getOrientacao() == 2;
+		    	( (am.getMapa().getMapa()[am.getAgente().getPosicao().getX()][am.getAgente().getPosicao().getY() + 1].getTerreno() == 1 && 
+				  am.getAgente().temPokemonAgua()) ||
+		    	  (am.getMapa().getMapa()[am.getAgente().getPosicao().getX()][am.getAgente().getPosicao().getY() + 1].getTerreno() == 5 && 
+				  am.getAgente().temPokemonFogo())
+				);
 		    actions
-		      System.out.println("Você andou para baixo.");
-		      posicaoAtual = a.getPosicao();
+		      System.out.println("O agente andou para baixo");
+		      posicaoAtual = am.getAgente().getPosicao();
 		      Vector v = new Vector(posicaoAtual.getX(), posicaoAtual.getY() + 1);
-		      a.setPosicao(v);
-		      a.setCustoAcao(-1);
-		      modified(a);
+		      am.getAgente().setPosicao(v);
+		      am.getAgente().setCustoAcao(-1);
+		      modified(am);
 		  }
 		  
 		  rule Direita {
 		   declarations
-		      Agente a;
+		      AgenteMapa am;
 		      Vector posicaoAtual;
 		    conditions
-		    	a.getOrientacao() == 3;
+		    	am.getAgente().getOrientacao() == 3;
+		    	( (am.getMapa().getMapa()[am.getAgente().getPosicao().getX() + 1][am.getAgente().getPosicao().getY()].getTerreno() == 1 && 
+				  am.getAgente().temPokemonAgua()) ||
+		    	  (am.getMapa().getMapa()[am.getAgente().getPosicao().getX() + 1][am.getAgente().getPosicao().getY()].getTerreno() == 5 && 
+				  am.getAgente().temPokemonFogo())
+				);
 		    actions
-		      System.out.println("Você andou para direita.");
-		      posicaoAtual = a.getPosicao();
+		      System.out.println("O agente andou para direita");
+		      posicaoAtual = am.getAgente().getPosicao();
 		      Vector v = new Vector(posicaoAtual.getX() + 1, posicaoAtual.getY());
-		      a.setPosicao(v);
-		      a.setCustoAcao(-1);
-		      modified(a);
+		      am.getAgente().setPosicao(v);
+		      am.getAgente().setCustoAcao(-1);
+		      modified(am);
 		  }
 		  
 		  rule Esquerda {
 		    declarations
-		      Agente a;
+		      AgenteMapa am;
 		      Vector posicaoAtual;
 		    conditions
-		    	a.getOrientacao() == 4;
+		    	am.getAgente().getOrientacao() == 4;
+		    	( (am.getMapa().getMapa()[am.getAgente().getPosicao().getX() - 1][am.getAgente().getPosicao().getY()].getTerreno() == 1 && 
+				  am.getAgente().temPokemonAgua()) ||
+		    	  (am.getMapa().getMapa()[am.getAgente().getPosicao().getX() - 1][am.getAgente().getPosicao().getY()].getTerreno() == 5 && 
+				  am.getAgente().temPokemonFogo())
+				);
 		    actions
-		      System.out.println("Você andou para esquerda.");
-		      posicaoAtual = a.getPosicao();
+		      System.out.println("O agente andou para esquerda");
+		      posicaoAtual = am.getAgente().getPosicao();
 		      Vector v = new Vector(posicaoAtual.getX() - 1, posicaoAtual.getY());
-		      a.setPosicao(v);
-		      a.setCustoAcao(-1);
-		      modified(a);
+		      am.getAgente().setPosicao(v);
+		      am.getAgente().setCustoAcao(-1);
+		      modified(am);
 		  }
   }

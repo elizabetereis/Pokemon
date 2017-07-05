@@ -5,7 +5,7 @@
      * Identifiers of rule Cima
      */
     private String[] identifiers_Cima = {
-        "a",
+        "am",
         "posicaoAtual"
     };
 
@@ -28,7 +28,7 @@
      */
     private String getDeclaredClassName_Cima(int index) {
         switch (index) {
-            case 0: return "Agente";
+            case 0: return "AgenteMapa";
             case 1: return "Vector";
             default: return null;
         }
@@ -42,7 +42,7 @@
      */
     private Class getDeclaredClass_Cima(int index) {
         switch (index) {
-            case 0: return Agente.class;
+            case 0: return AgenteMapa.class;
             case 1: return Vector.class;
             default: return null;
         }
@@ -56,7 +56,7 @@
      */
     private void setObject_Cima(int index, Object value) {
         switch (index) {
-            case 0: this.Agente_1 = (Agente) value; break;
+            case 0: this.AgenteMapa_1 = (AgenteMapa) value; break;
             case 1: this.Vector_1 = (Vector) value; break;
         }
     }
@@ -69,7 +69,7 @@
      */
     private Object getObject_Cima(int index) {
         switch (index) {
-            case 0: return Agente_1;
+            case 0: return AgenteMapa_1;
             case 1: return Vector_1;
             default: return null;
         }
@@ -84,7 +84,7 @@
      */
     private Object[] getObjects_Cima() {
         return new Object[] {
-                            Agente_1,
+                            AgenteMapa_1,
                             Vector_1
                             };
     }
@@ -97,20 +97,40 @@
      *          declarations of this rule.
      */
     private void setObjects_Cima(Object[] objects) {
-        Agente_1 = (Agente) objects[0];
+        AgenteMapa_1 = (AgenteMapa) objects[0];
         Vector_1 = (Vector) objects[1];
     }
 
     /**
      * Condition 0 of rule Cima.<p>
      * The original expression was:<br>
-     * <code>a.getOrientacao() == 1</code>
+     * <code>am.getAgente().getOrientacao() == 1</code>
      *
      * @return <code>true</code> if the condition is satisfied;
      *          <code>false</code> otherwise.
      */
     private boolean Cima_cond_0() {
-        return (Agente_1.getOrientacao() == 1);
+        return (AgenteMapa_1.getAgente().getOrientacao() == 1);
+    }
+
+    /**
+     * Condition 1 of rule Cima.<p>
+     * The original expression was:<br>
+     * <code>( (am.getMapa().getMapa()[am.getAgente().getPosicao().getX()][am.getAgente().getPosicao().getY() - 1].getTerreno() == 1 && 
+				  am.getAgente().temPokemonAgua()) ||
+		    	  (am.getMapa().getMapa()[am.getAgente().getPosicao().getX()][am.getAgente().getPosicao().getY() - 1].getTerreno() == 5 && 
+				  am.getAgente().temPokemonFogo())
+				)</code>
+     *
+     * @return <code>true</code> if the condition is satisfied;
+     *          <code>false</code> otherwise.
+     */
+    private boolean Cima_cond_1() {
+        return (( (AgenteMapa_1.getMapa().getMapa()[AgenteMapa_1.getAgente().getPosicao().getX()][AgenteMapa_1.getAgente().getPosicao().getY() - 1].getTerreno() == 1 && 
+				  AgenteMapa_1.getAgente().temPokemonAgua()) ||
+		    	  (AgenteMapa_1.getMapa().getMapa()[AgenteMapa_1.getAgente().getPosicao().getX()][AgenteMapa_1.getAgente().getPosicao().getY() - 1].getTerreno() == 5 && 
+				  AgenteMapa_1.getAgente().temPokemonFogo())
+				));
     }
 
     /**
@@ -123,6 +143,7 @@
     private boolean Cima_cond(int index) {
         switch (index) {
             case 0: return Cima_cond_0();
+            case 1: return Cima_cond_1();
             default: return false;
         }
     }
@@ -139,6 +160,7 @@
         switch (declIndex) {
             case 0:
                 if (!Cima_cond_0()) return false;
+                if (!Cima_cond_1()) return false;
                 return true;
             case 1:
                 return true;
@@ -170,12 +192,12 @@
      * Executes the action part of the rule Cima
      */
     private void Cima() {
-		      System.out.println("Voc� andou para cima.");
-		      Vector_1 = Agente_1.getPosicao();
+		      System.out.println("O agente andou para cima");
+		      Vector_1 = AgenteMapa_1.getAgente().getPosicao();
 		      Vector v = new Vector(Vector_1.getX(), Vector_1.getY() - 1);
-		      Agente_1.setPosicao(v);
-		      Agente_1.setCustoAcao(-1);
-		      modified(Agente_1);
+		      AgenteMapa_1.getAgente().setPosicao(v);
+		      AgenteMapa_1.getAgente().setCustoAcao(-1);
+		      modified(AgenteMapa_1);
 		      }
 
 
@@ -185,7 +207,7 @@
      * Identifiers of rule Baixo
      */
     private String[] identifiers_Baixo = {
-        "a",
+        "am",
         "posicaoAtual"
     };
 
@@ -208,7 +230,7 @@
      */
     private String getDeclaredClassName_Baixo(int index) {
         switch (index) {
-            case 0: return "Agente";
+            case 0: return "AgenteMapa";
             case 1: return "Vector";
             default: return null;
         }
@@ -222,7 +244,7 @@
      */
     private Class getDeclaredClass_Baixo(int index) {
         switch (index) {
-            case 0: return Agente.class;
+            case 0: return AgenteMapa.class;
             case 1: return Vector.class;
             default: return null;
         }
@@ -236,7 +258,7 @@
      */
     private void setObject_Baixo(int index, Object value) {
         switch (index) {
-            case 0: this.Agente_1 = (Agente) value; break;
+            case 0: this.AgenteMapa_1 = (AgenteMapa) value; break;
             case 1: this.Vector_1 = (Vector) value; break;
         }
     }
@@ -249,7 +271,7 @@
      */
     private Object getObject_Baixo(int index) {
         switch (index) {
-            case 0: return Agente_1;
+            case 0: return AgenteMapa_1;
             case 1: return Vector_1;
             default: return null;
         }
@@ -264,7 +286,7 @@
      */
     private Object[] getObjects_Baixo() {
         return new Object[] {
-                            Agente_1,
+                            AgenteMapa_1,
                             Vector_1
                             };
     }
@@ -277,20 +299,40 @@
      *          declarations of this rule.
      */
     private void setObjects_Baixo(Object[] objects) {
-        Agente_1 = (Agente) objects[0];
+        AgenteMapa_1 = (AgenteMapa) objects[0];
         Vector_1 = (Vector) objects[1];
     }
 
     /**
      * Condition 0 of rule Baixo.<p>
      * The original expression was:<br>
-     * <code>a.getOrientacao() == 2</code>
+     * <code>am.getAgente().getOrientacao() == 2</code>
      *
      * @return <code>true</code> if the condition is satisfied;
      *          <code>false</code> otherwise.
      */
     private boolean Baixo_cond_0() {
-        return (Agente_1.getOrientacao() == 2);
+        return (AgenteMapa_1.getAgente().getOrientacao() == 2);
+    }
+
+    /**
+     * Condition 1 of rule Baixo.<p>
+     * The original expression was:<br>
+     * <code>( (am.getMapa().getMapa()[am.getAgente().getPosicao().getX()][am.getAgente().getPosicao().getY() + 1].getTerreno() == 1 && 
+				  am.getAgente().temPokemonAgua()) ||
+		    	  (am.getMapa().getMapa()[am.getAgente().getPosicao().getX()][am.getAgente().getPosicao().getY() + 1].getTerreno() == 5 && 
+				  am.getAgente().temPokemonFogo())
+				)</code>
+     *
+     * @return <code>true</code> if the condition is satisfied;
+     *          <code>false</code> otherwise.
+     */
+    private boolean Baixo_cond_1() {
+        return (( (AgenteMapa_1.getMapa().getMapa()[AgenteMapa_1.getAgente().getPosicao().getX()][AgenteMapa_1.getAgente().getPosicao().getY() + 1].getTerreno() == 1 && 
+				  AgenteMapa_1.getAgente().temPokemonAgua()) ||
+		    	  (AgenteMapa_1.getMapa().getMapa()[AgenteMapa_1.getAgente().getPosicao().getX()][AgenteMapa_1.getAgente().getPosicao().getY() + 1].getTerreno() == 5 && 
+				  AgenteMapa_1.getAgente().temPokemonFogo())
+				));
     }
 
     /**
@@ -303,6 +345,7 @@
     private boolean Baixo_cond(int index) {
         switch (index) {
             case 0: return Baixo_cond_0();
+            case 1: return Baixo_cond_1();
             default: return false;
         }
     }
@@ -319,6 +362,7 @@
         switch (declIndex) {
             case 0:
                 if (!Baixo_cond_0()) return false;
+                if (!Baixo_cond_1()) return false;
                 return true;
             case 1:
                 return true;
@@ -350,12 +394,12 @@
      * Executes the action part of the rule Baixo
      */
     private void Baixo() {
-		      System.out.println("Voc� andou para baixo.");
-		      Vector_1 = Agente_1.getPosicao();
+		      System.out.println("O agente andou para baixo");
+		      Vector_1 = AgenteMapa_1.getAgente().getPosicao();
 		      Vector v = new Vector(Vector_1.getX(), Vector_1.getY() + 1);
-		      Agente_1.setPosicao(v);
-		      Agente_1.setCustoAcao(-1);
-		      modified(Agente_1);
+		      AgenteMapa_1.getAgente().setPosicao(v);
+		      AgenteMapa_1.getAgente().setCustoAcao(-1);
+		      modified(AgenteMapa_1);
 		      }
 
 
@@ -365,7 +409,7 @@
      * Identifiers of rule Direita
      */
     private String[] identifiers_Direita = {
-        "a",
+        "am",
         "posicaoAtual"
     };
 
@@ -388,7 +432,7 @@
      */
     private String getDeclaredClassName_Direita(int index) {
         switch (index) {
-            case 0: return "Agente";
+            case 0: return "AgenteMapa";
             case 1: return "Vector";
             default: return null;
         }
@@ -402,7 +446,7 @@
      */
     private Class getDeclaredClass_Direita(int index) {
         switch (index) {
-            case 0: return Agente.class;
+            case 0: return AgenteMapa.class;
             case 1: return Vector.class;
             default: return null;
         }
@@ -416,7 +460,7 @@
      */
     private void setObject_Direita(int index, Object value) {
         switch (index) {
-            case 0: this.Agente_1 = (Agente) value; break;
+            case 0: this.AgenteMapa_1 = (AgenteMapa) value; break;
             case 1: this.Vector_1 = (Vector) value; break;
         }
     }
@@ -429,7 +473,7 @@
      */
     private Object getObject_Direita(int index) {
         switch (index) {
-            case 0: return Agente_1;
+            case 0: return AgenteMapa_1;
             case 1: return Vector_1;
             default: return null;
         }
@@ -444,7 +488,7 @@
      */
     private Object[] getObjects_Direita() {
         return new Object[] {
-                            Agente_1,
+                            AgenteMapa_1,
                             Vector_1
                             };
     }
@@ -457,20 +501,40 @@
      *          declarations of this rule.
      */
     private void setObjects_Direita(Object[] objects) {
-        Agente_1 = (Agente) objects[0];
+        AgenteMapa_1 = (AgenteMapa) objects[0];
         Vector_1 = (Vector) objects[1];
     }
 
     /**
      * Condition 0 of rule Direita.<p>
      * The original expression was:<br>
-     * <code>a.getOrientacao() == 3</code>
+     * <code>am.getAgente().getOrientacao() == 3</code>
      *
      * @return <code>true</code> if the condition is satisfied;
      *          <code>false</code> otherwise.
      */
     private boolean Direita_cond_0() {
-        return (Agente_1.getOrientacao() == 3);
+        return (AgenteMapa_1.getAgente().getOrientacao() == 3);
+    }
+
+    /**
+     * Condition 1 of rule Direita.<p>
+     * The original expression was:<br>
+     * <code>( (am.getMapa().getMapa()[am.getAgente().getPosicao().getX() + 1][am.getAgente().getPosicao().getY()].getTerreno() == 1 && 
+				  am.getAgente().temPokemonAgua()) ||
+		    	  (am.getMapa().getMapa()[am.getAgente().getPosicao().getX() + 1][am.getAgente().getPosicao().getY()].getTerreno() == 5 && 
+				  am.getAgente().temPokemonFogo())
+				)</code>
+     *
+     * @return <code>true</code> if the condition is satisfied;
+     *          <code>false</code> otherwise.
+     */
+    private boolean Direita_cond_1() {
+        return (( (AgenteMapa_1.getMapa().getMapa()[AgenteMapa_1.getAgente().getPosicao().getX() + 1][AgenteMapa_1.getAgente().getPosicao().getY()].getTerreno() == 1 && 
+				  AgenteMapa_1.getAgente().temPokemonAgua()) ||
+		    	  (AgenteMapa_1.getMapa().getMapa()[AgenteMapa_1.getAgente().getPosicao().getX() + 1][AgenteMapa_1.getAgente().getPosicao().getY()].getTerreno() == 5 && 
+				  AgenteMapa_1.getAgente().temPokemonFogo())
+				));
     }
 
     /**
@@ -483,6 +547,7 @@
     private boolean Direita_cond(int index) {
         switch (index) {
             case 0: return Direita_cond_0();
+            case 1: return Direita_cond_1();
             default: return false;
         }
     }
@@ -499,6 +564,7 @@
         switch (declIndex) {
             case 0:
                 if (!Direita_cond_0()) return false;
+                if (!Direita_cond_1()) return false;
                 return true;
             case 1:
                 return true;
@@ -530,12 +596,12 @@
      * Executes the action part of the rule Direita
      */
     private void Direita() {
-		      System.out.println("Voc� andou para direita.");
-		      Vector_1 = Agente_1.getPosicao();
+		      System.out.println("O agente andou para direita");
+		      Vector_1 = AgenteMapa_1.getAgente().getPosicao();
 		      Vector v = new Vector(Vector_1.getX() + 1, Vector_1.getY());
-		      Agente_1.setPosicao(v);
-		      Agente_1.setCustoAcao(-1);
-		      modified(Agente_1);
+		      AgenteMapa_1.getAgente().setPosicao(v);
+		      AgenteMapa_1.getAgente().setCustoAcao(-1);
+		      modified(AgenteMapa_1);
 		      }
 
 
@@ -545,7 +611,7 @@
      * Identifiers of rule Esquerda
      */
     private String[] identifiers_Esquerda = {
-        "a",
+        "am",
         "posicaoAtual"
     };
 
@@ -568,7 +634,7 @@
      */
     private String getDeclaredClassName_Esquerda(int index) {
         switch (index) {
-            case 0: return "Agente";
+            case 0: return "AgenteMapa";
             case 1: return "Vector";
             default: return null;
         }
@@ -582,7 +648,7 @@
      */
     private Class getDeclaredClass_Esquerda(int index) {
         switch (index) {
-            case 0: return Agente.class;
+            case 0: return AgenteMapa.class;
             case 1: return Vector.class;
             default: return null;
         }
@@ -596,7 +662,7 @@
      */
     private void setObject_Esquerda(int index, Object value) {
         switch (index) {
-            case 0: this.Agente_1 = (Agente) value; break;
+            case 0: this.AgenteMapa_1 = (AgenteMapa) value; break;
             case 1: this.Vector_1 = (Vector) value; break;
         }
     }
@@ -609,7 +675,7 @@
      */
     private Object getObject_Esquerda(int index) {
         switch (index) {
-            case 0: return Agente_1;
+            case 0: return AgenteMapa_1;
             case 1: return Vector_1;
             default: return null;
         }
@@ -624,7 +690,7 @@
      */
     private Object[] getObjects_Esquerda() {
         return new Object[] {
-                            Agente_1,
+                            AgenteMapa_1,
                             Vector_1
                             };
     }
@@ -637,20 +703,40 @@
      *          declarations of this rule.
      */
     private void setObjects_Esquerda(Object[] objects) {
-        Agente_1 = (Agente) objects[0];
+        AgenteMapa_1 = (AgenteMapa) objects[0];
         Vector_1 = (Vector) objects[1];
     }
 
     /**
      * Condition 0 of rule Esquerda.<p>
      * The original expression was:<br>
-     * <code>a.getOrientacao() == 4</code>
+     * <code>am.getAgente().getOrientacao() == 4</code>
      *
      * @return <code>true</code> if the condition is satisfied;
      *          <code>false</code> otherwise.
      */
     private boolean Esquerda_cond_0() {
-        return (Agente_1.getOrientacao() == 4);
+        return (AgenteMapa_1.getAgente().getOrientacao() == 4);
+    }
+
+    /**
+     * Condition 1 of rule Esquerda.<p>
+     * The original expression was:<br>
+     * <code>( (am.getMapa().getMapa()[am.getAgente().getPosicao().getX() - 1][am.getAgente().getPosicao().getY()].getTerreno() == 1 && 
+				  am.getAgente().temPokemonAgua()) ||
+		    	  (am.getMapa().getMapa()[am.getAgente().getPosicao().getX() - 1][am.getAgente().getPosicao().getY()].getTerreno() == 5 && 
+				  am.getAgente().temPokemonFogo())
+				)</code>
+     *
+     * @return <code>true</code> if the condition is satisfied;
+     *          <code>false</code> otherwise.
+     */
+    private boolean Esquerda_cond_1() {
+        return (( (AgenteMapa_1.getMapa().getMapa()[AgenteMapa_1.getAgente().getPosicao().getX() - 1][AgenteMapa_1.getAgente().getPosicao().getY()].getTerreno() == 1 && 
+				  AgenteMapa_1.getAgente().temPokemonAgua()) ||
+		    	  (AgenteMapa_1.getMapa().getMapa()[AgenteMapa_1.getAgente().getPosicao().getX() - 1][AgenteMapa_1.getAgente().getPosicao().getY()].getTerreno() == 5 && 
+				  AgenteMapa_1.getAgente().temPokemonFogo())
+				));
     }
 
     /**
@@ -663,6 +749,7 @@
     private boolean Esquerda_cond(int index) {
         switch (index) {
             case 0: return Esquerda_cond_0();
+            case 1: return Esquerda_cond_1();
             default: return false;
         }
     }
@@ -679,6 +766,7 @@
         switch (declIndex) {
             case 0:
                 if (!Esquerda_cond_0()) return false;
+                if (!Esquerda_cond_1()) return false;
                 return true;
             case 1:
                 return true;
@@ -710,12 +798,12 @@
      * Executes the action part of the rule Esquerda
      */
     private void Esquerda() {
-		      System.out.println("Voc� andou para esquerda.");
-		      Vector_1 = Agente_1.getPosicao();
+		      System.out.println("O agente andou para esquerda");
+		      Vector_1 = AgenteMapa_1.getAgente().getPosicao();
 		      Vector v = new Vector(Vector_1.getX() - 1, Vector_1.getY());
-		      Agente_1.setPosicao(v);
-		      Agente_1.setCustoAcao(-1);
-		      modified(Agente_1);
+		      AgenteMapa_1.getAgente().setPosicao(v);
+		      AgenteMapa_1.getAgente().setCustoAcao(-1);
+		      modified(AgenteMapa_1);
 		      }
 
 
@@ -762,10 +850,10 @@
      * The number of conditions of the rules in this class file.
      */
     private static final int[] File_numberOfConditions = {
-        1,
-        1,
-        1,
-        1
+        2,
+        2,
+        2,
+        2
     };
 
     /**
@@ -979,7 +1067,7 @@
     /*
      * The variables declared in the rules.
      */
-    private Agente Agente_1;
+    private AgenteMapa AgenteMapa_1;
     private Vector Vector_1;
 
     /**
@@ -996,7 +1084,7 @@
 /**
  * Knowledge base created by JEOPS from file Andar.rules
  *
- * @version Jul 3, 2017
+ * @version 05/07/2017
  */
 public class Andar extends jeops.AbstractKnowledgeBase {
 

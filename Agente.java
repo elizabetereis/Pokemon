@@ -27,6 +27,7 @@ public class Agente
 	public final static int BATALHAR = 3;
 	public final static int RECUPERAR_POKEMONS = 4;
 	public final static int COMPRAR = 5;
+	public final static int IR_CELULA = 6;
 
 	public Agente(String nome, ArrayList<Pokemon> pokemonsList, Vector posicao)
 	{

@@ -1,6 +1,16 @@
  public ruleBase RegrasPokemon {
  
- 		 rule DecisaoUsarPokebola {
+ 		rule AndarAleatoriamente {
+		    declarations
+		        AgenteMapa am;
+		    conditions
+		    	am.getMapaElemento().existeElementoProximo(am.getAgente().getPosicao()) == false;
+		    actions
+		      am.getAgente().setDecisao(am.getAgente().ANDAR_ALEATORIAMENTE);
+		      modified(am);
+		  }
+ 
+ 		 rule UsarPokebola {
 		    declarations
 		      AgenteMapa am;
 		    conditions
@@ -13,18 +23,106 @@
 		      	am.getAgente().setDecisao(2);
 		      	modified(am);
 		  }
- 		  
-		  rule DecisaoAndarAleatoriamente {
+		  
+		  rule DecisaoIrPraCelula {
 		    declarations
-		        AgenteMapa am;
+		      AgenteMapa am;
 		    conditions
-		    	am.getMapaElemento().existemElementosCima(am.getAgente().getPosicao()) == -1;
-				am.getMapaElemento().existemElementosBaixo(am.getAgente().getPosicao()) == -1;
-				am.getMapaElemento().existemElementosDireita(am.getAgente().getPosicao()) == -1; 
-				am.getMapaElemento().existemElementosEsquerda(am.getAgente().getPosicao()) == -1;
+		    	am.getMapaElemento().temElementoProximo(am.getAgente().getPosicao()) == true;
 		    actions
-		      am.getAgente().setDecisao(1);
-		      System.out.println("Decisao andar aleatoriamente");
+		      	System.out.println("O agente andou uma celula.");
+		      	am.getAgente().setCustoAcao(-1);
+		      	am.getAgente().setDecisao(am.getAgente().IR_CELULA);
+		      	modified(am);
+		  }
+		  
+		 rule IrPraCelulaACima {
+		    declarations
+		      AgenteMapa am;
+		      Vector posicaoAtual;
+		    conditions
+		    	am.getAgente().getDecisao() == am.getAgente().IR_CELULA;
+		    	am.getMapaElemento().getCelulaDirecao() == am.getMapaElemento().CIMA;
+		    	am.getAgente().getOrientacao() == 1;
+		    	( (am.getMapa()[am.getAgente().getPosicao().getX()][am.getAgente().getPosicao().getY() - 1].getTerreno() == 1 && 
+				  am.getAgente().temPokemonAgua()) ||
+		    	  (am.getMapa()[am.getAgente().getPosicao().getX()][am.getAgente().getPosicao().getY() - 1].getTerreno() == 5 && 
+				  am.getAgente().temPokemonFogo())
+				);
+		    actions
+		      System.out.println("O agente andou para cima");
+		      posicaoAtual = am.getAgente().getPosicao();
+		      Vector v = new Vector(posicaoAtual.getX(), posicaoAtual.getY() - 1);
+		      am.getAgente().setPosicao(v);
+		      am.getAgente().setCustoAcao(-1);
+		      modified(am);
+		  }
+		  
+		  rule IrPraCelulaBaixo {
+		    declarations
+		      AgenteMapa am;
+		      Vector posicaoAtual;
+		    conditions
+		    	am.getAgente().getDecisao() == am.getAgente().IR_CELULA;
+		    	am.getMapaElemento().getCelulaDirecao() == am.getMapaElemento().BAIXO;
+		    	( (am.getMapa()[am.getAgente().getPosicao().getX()][am.getAgente().getPosicao().getY() + 1].getTerreno() == 1 && 
+				  am.getAgente().temPokemonAgua()) ||
+		    	  (am.getMapa()[am.getAgente().getPosicao().getX()][am.getAgente().getPosicao().getY() + 1].getTerreno() == 5 && 
+				  am.getAgente().temPokemonFogo())
+				);
+		    actions
+		      System.out.println("O agente andou para baixo");
+		      posicaoAtual = am.getAgente().getPosicao();
+		      Vector v = new Vector(posicaoAtual.getX(), posicaoAtual.getY() + 1);
+		      am.getAgente().setPosicao(v);
+		      am.getAgente().setCustoAcao(-1);
+		      am.getAgente().setDecisao(am.getAgente().ANDAR_ALEATORIAMENTE);
+		      modified(am);
+		  }
+		  
+		  rule IrParaCelulaDireita {
+		   declarations
+		      AgenteMapa am;
+		      Vector posicaoAtual;
+		    conditions
+		    	am.getAgente().getDecisao() == am.getAgente().IR_CELULA;
+		    	am.getMapaElemento().getCelulaDirecao() == am.getMapaElemento().DIREITA;
+		    	am.getAgente().getOrientacao() == 3;
+		    	( (am.getMapa()[am.getAgente().getPosicao().getX() + 1][am.getAgente().getPosicao().getY()].getTerreno() == 1 && 
+				  am.getAgente().temPokemonAgua()) ||
+		    	  (am.getMapa()[am.getAgente().getPosicao().getX() + 1][am.getAgente().getPosicao().getY()].getTerreno() == 5 && 
+				  am.getAgente().temPokemonFogo())
+				);
+		    actions
+		      System.out.println("O agente andou para direita");
+		      posicaoAtual = am.getAgente().getPosicao();
+		      Vector v = new Vector(posicaoAtual.getX() + 1, posicaoAtual.getY());
+		      am.getAgente().setPosicao(v);
+		      am.getAgente().setCustoAcao(-1);
+		      am.getAgente().setDecisao(am.getAgente().ANDAR_ALEATORIAMENTE);
+		      modified(am);
+		  }
+		  
+		  rule IrPraCelulaEsquerda {
+		    declarations
+		      AgenteMapa am;
+		      Vector posicaoAtual;
+		    conditions
+		    	am.getAgente().getDecisao() == am.getAgente().IR_CELULA;
+		    	am.getMapaElemento().getCelulaDirecao() == am.getMapaElemento().ESQUERDA;
+		    	am.getAgente().getOrientacao() == 4;
+		    	( (am.getMapa()[am.getAgente().getPosicao().getX() - 1][am.getAgente().getPosicao().getY()].getTerreno() == 1 && 
+				  am.getAgente().temPokemonAgua()) ||
+		    	  (am.getMapa()[am.getAgente().getPosicao().getX() - 1][am.getAgente().getPosicao().getY()].getTerreno() == 5 && 
+				  am.getAgente().temPokemonFogo())
+				);
+		    actions
+		      System.out.println("O agente andou para esquerda");
+		      posicaoAtual = am.getAgente().getPosicao();
+		      Vector v = new Vector(posicaoAtual.getX() - 1, posicaoAtual.getY());
+		      am.getAgente().setPosicao(v);
+		      am.getAgente().setCustoAcao(-1);
+		      am.getAgente().setDecisao(am.getAgente().ANDAR_ALEATORIAMENTE);
 		      modified(am);
 		  }
 		  
@@ -53,7 +151,7 @@
 		      modified(am);
 		  }
 		  
-		  rule DecisaoRecuperarPokemons {
+		  rule recuperarPokemons {
 		    declarations
 		      AgenteMapa am;
 		    conditions
@@ -99,7 +197,7 @@
 		    conditions
 		      am.getAgente().isPokemonsRecuperados() == true;
 		    actions
-		     // System.out.println("Voc� ganhou a batalha");
+		      System.out.println("Voc� ganhou a batalha");
 		      am.getAgente().setCustoAcao(+150);
 		      modified(am);
 		  }

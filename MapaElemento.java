@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import com.sun.org.apache.bcel.internal.generic.RETURN;
+
 public class MapaElemento {
 	
 	public final static int NUM_CENTROS = 20;
@@ -11,11 +13,19 @@ public class MapaElemento {
 	public final static int NUM_LOJAS = 15;
 	public final static int NUM_TREINADOR = 50;
 	public final static int TAM_MAPA = 42;
+	
+	public int CIMA = 30;
+	public int BAIXO = 31;
+	public int ESQUERDA = 32;
+	public int DIREITA = 33;
+	
 	private CelulaMapa [][] mapa = new CelulaMapa[TAM_MAPA][TAM_MAPA];
-	private int[][] terrenoMapa = new int[TAM_MAPA][TAM_MAPA]; 
+	private int[][] terrenoMapa = new int[TAM_MAPA][TAM_MAPA];
+	private int celulaComElemento;
 	
 	
 	public MapaElemento(){
+		celulaComElemento = -1;
 		terrenoMapa = new Matriz().getMatriz(); //pega terrenos vindos do arquivo de texto
 		criaMapa();
 		printMapa();
@@ -185,6 +195,27 @@ public class MapaElemento {
     	return false;
 	}
 	
+	public boolean temElementoProximo(Vector posicao){
+		
+		if(existemElementosCima(posicao) != -1)
+			celulaComElemento = CIMA;
+		else if(existemElementosBaixo(posicao) != -1)
+			celulaComElemento =  BAIXO;
+		else if(existemElementosEsquerda(posicao) != -1)
+			celulaComElemento =  ESQUERDA;
+		else if(existemElementosDireita(posicao) != -1)
+			celulaComElemento =  DIREITA;
+		
+		if(celulaComElemento != -1)
+			return true;
+		
+		return false;
+	}
+	
+	public int getCelulaDirecao(){
+		return celulaComElemento;
+	}
+	
 	public void printMapa(){
 		
 		for(int i = 0; i < TAM_MAPA; i++){
@@ -197,16 +228,5 @@ public class MapaElemento {
 		}
 	}
 
-	
-//	public static void main(String[] args) {
-//    	
-//		CelulaMapa[][] mapa = new MapaElemento().getMapa();
-//		
-//		for(int i = 0; i < MapaElemento.TAM_MAPA; i++){
-//			for(int j = 0; j < MapaElemento.TAM_MAPA; j++){
-//				System.out.println(mapa[i][j].toString());
-//			}
-//		}
-//	}
 
 }

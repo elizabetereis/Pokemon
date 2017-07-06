@@ -1,5 +1,3 @@
-
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -194,16 +192,16 @@ public class MapaElemento {
 	
 	public boolean temElementoProximo(Vector posicao){
 		
-		if(existemElementosCima(posicao) != -1)
-			celulaComElemento = CIMA;
-		else if(existemElementosBaixo(posicao) != -1)
-			celulaComElemento =  BAIXO;
-		else if(existemElementosEsquerda(posicao) != -1)
-			celulaComElemento =  ESQUERDA;
-		else if(existemElementosDireita(posicao) != -1)
-			celulaComElemento =  DIREITA;
+		if(this.existemElementosCima(posicao) != -1)
+			this.celulaComElemento = CIMA;
+		else if(this.existemElementosBaixo(posicao) != -1)
+			this.celulaComElemento =  BAIXO;
+		else if(this.existemElementosEsquerda(posicao) != -1)
+			this.celulaComElemento =  ESQUERDA;
+		else if(this.existemElementosDireita(posicao) != -1)
+			this.celulaComElemento =  DIREITA;
 		
-		if(celulaComElemento != -1)
+		if(this.celulaComElemento != -1)
 			return true;
 		
 		return false;

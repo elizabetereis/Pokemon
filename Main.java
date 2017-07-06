@@ -11,6 +11,8 @@ public class Main {
 		AgenteMapa agenteMapa = new AgenteMapa(new Agente("jogador", posInicial, qtdInicialBolas), 
 				new MapaElemento());
 		
+		System.out.println("Coluna: "+agenteMapa.getAgente().getPosicao().getX()+" Linha: "+agenteMapa.getAgente().getPosicao().getY());
+		
 		pokemonBase.tell(agenteMapa);
 		pokemonBase.run();
 	}

@@ -35,6 +35,7 @@ public class Agente
 		this.pokemonsList = pokemonsList;
 		this.posicao = posicao;
 		this.pokemonsRecuperados = true;
+		this.decisao = 0;
 	}
 	
 	public Agente(String nome, Vector posicao, int qtdBolas)

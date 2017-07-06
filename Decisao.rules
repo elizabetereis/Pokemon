@@ -31,7 +31,10 @@
 		    declarations
 		      AgenteMapa am;
 		    conditions
-		    	am.getMapa().existemElementosCima(am.getAgente().getPosicao()) == 3;
+		    	am.getMapa().existemElementosCima(am.getAgente().getPosicao()) == 3 ||
+		    	am.getMapa().existemElementosBaixo(am.getAgente().getPosicao()) == 3 ||
+		    	am.getMapa().existemElementosEsquerda(am.getAgente().getPosicao()) == 3 ||
+		    	am.getMapa().existemElementosDireita(am.getAgente().getPosicao()) == 3;
 		    	am.getMapa().existemElementosCima(am.getAgente().getPosicao()) < 4;
 		    	am.getMapa().existemElementosBaixo(am.getAgente().getPosicao()) < 4;
 		    	am.getMapa().existemElementosDireita(am.getAgente().getPosicao()) < 4;

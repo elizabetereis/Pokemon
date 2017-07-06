@@ -1,13 +1,9 @@
-
-
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-
-import javafx.scene.control.Button;
 
 public class MapaView extends JFrame{
     
@@ -54,11 +50,12 @@ public class MapaView extends JFrame{
     
    public void alteraPosAgente(Vector pos){
 	   
-	   mapa[posAgenteMapa.x][posAgenteMapa.y] = buttonPos;
-	   posAgenteMapa = pos;
-	   buttonPos = mapa[pos.x][pos.y];
-	   mapa[pos.x][pos.y].setIcon(new javax.swing.ImageIcon(getClass()
+//	   mapa[posAgenteMapa.x][posAgenteMapa.y] = buttonPos;
+//	   this.posAgenteMapa = pos;
+	   buttonPos = mapa[pos.getX()][pos.getY()];
+	   mapa[pos.getX()][pos.getY()].setIcon(new javax.swing.ImageIcon(getClass()
    				.getResource("pokemonicon.png")));
+	   
    }
     
     private void criaMapaTerrenos(){

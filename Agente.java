@@ -113,6 +113,10 @@ public class Agente
 	{
 		this.quantidadePokebolas = quantidadePokebolas;
 	}
+	
+	public void addPokebolas(int qtd){
+		this.quantidadePokebolas+=qtd;
+	}
 
 	public int getDecisao() {
 		return decisao;

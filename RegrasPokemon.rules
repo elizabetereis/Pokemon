@@ -1,0 +1,190 @@
+ public ruleBase RegrasPokemon {
+ 
+ 		 rule DecisaoUsarPokebola {
+		    declarations
+		      AgenteMapa am;
+		    conditions
+		    	am.getAgente().getQuantidadePokebolas() > 0;
+		    	am.getMapaElemento().existeElementoPosAtual(am.getAgente().getPosicao()) >= 4;
+		    actions
+		      	System.out.println("O agente capturou um pokemon.");
+		      	am.getAgente().setQuantidadePokebolas(am.getAgente().getQuantidadePokebolas() - 1);
+		      	am.getAgente().setCustoAcao(-5);
+		      	am.getAgente().setDecisao(2);
+		      	modified(am);
+		  }
+ 		  
+		  rule DecisaoAndarAleatoriamente {
+		    declarations
+		        AgenteMapa am;
+		    conditions
+		    	am.getMapaElemento().existemElementosCima(am.getAgente().getPosicao()) == -1;
+				am.getMapaElemento().existemElementosBaixo(am.getAgente().getPosicao()) == -1;
+				am.getMapaElemento().existemElementosDireita(am.getAgente().getPosicao()) == -1; 
+				am.getMapaElemento().existemElementosEsquerda(am.getAgente().getPosicao()) == -1;
+		    actions
+		      am.getAgente().setDecisao(1);
+		      System.out.println("Decisao andar aleatoriamente");
+		      modified(am);
+		  }
+		  
+		  rule DecisaoBatalhar {
+		    declarations
+		      AgenteMapa am;
+		    conditions
+		    	am.getAgente().getDecisao() == am.getAgente().BATALHAR;
+		    	am.getMapaElemento().existemElementosCima(am.getAgente().getPosicao()) == 3;
+		    	am.getMapaElemento().existemElementosCima(am.getAgente().getPosicao()) < 4;
+		    	am.getMapaElemento().existemElementosBaixo(am.getAgente().getPosicao()) < 4;
+		    	am.getMapaElemento().existemElementosDireita(am.getAgente().getPosicao()) < 4;
+		    	am.getMapaElemento().existemElementosEsquerda(am.getAgente().getPosicao()) < 4;
+		    	(am.getMapaElemento().existemElementosCima(am.getAgente().getPosicao()) != 1 &&
+		    	am.getMapaElemento().existemElementosBaixo(am.getAgente().getPosicao()) != 1 &&
+		    	am.getMapaElemento().existemElementosDireita(am.getAgente().getPosicao()) != 1 &&
+		    	am.getMapaElemento().existemElementosEsquerda(am.getAgente().getPosicao()) != 1)||
+		    	(((am.getMapaElemento().existemElementosCima(am.getAgente().getPosicao()) == 1)||
+		    	(am.getMapaElemento().existemElementosBaixo(am.getAgente().getPosicao()) == 1) ||
+		    	(am.getMapaElemento().existemElementosDireita(am.getAgente().getPosicao()) == 1)||
+		    	(am.getMapaElemento().existemElementosEsquerda(am.getAgente().getPosicao()) == 1)) && 
+		    	am.getAgente().isPokemonsRecuperados());	
+		    actions
+		      am.getAgente().setDecisao(3);
+		      System.out.println("Decisao batalhar");
+		      modified(am);
+		  }
+		  
+		  rule DecisaoRecuperarPokemons {
+		    declarations
+		      AgenteMapa am;
+		    conditions
+		    	am.getAgente().getDecisao() != am.getAgente().RECUPERAR_POKEMONS;
+		    	am.getMapaElemento().existeElementoPosAtual(am.getAgente().getPosicao()) == 1;
+		    	!am.getAgente().isPokemonsRecuperados();
+		    actions
+		      am.getAgente().setDecisao(4);
+		      am.getAgente().setCustoAcao(-100);
+		      am.getAgente().setPokemonsRecuperados(true); 
+		      System.out.println("recuperar pokemons");
+		      modified(am);
+		  }
+		  
+		  rule comprarPokebolas {
+		    declarations
+		      AgenteMapa am;
+		    conditions
+		    	am.getAgente().getDecisao() != am.getAgente().COMPRAR;
+		    	am.getMapaElemento().existeElementoPosAtual(am.getAgente().getPosicao()) == 2;
+		    	am.getAgente().getQuantidadePokebolas() == 0;
+		    actions
+		      am.getAgente().setDecisao(5);
+		      am.getAgente().addPokebolas(25);
+		      System.out.println("comprar pokebolas");
+		      modified(am);
+		  }
+		  
+		  rule BatalhaPerder {
+		    declarations
+		      AgenteMapa am;
+		    conditions
+		      am.getAgente().isPokemonsRecuperados() == false;
+		    actions
+		      System.out.println("Voc� perdeu a batalham.");
+		      am.getAgente().setCustoAcao(-1000);
+		      modified(am);
+		  }
+		  
+		  rule BatalhaGanhar {
+		    declarations
+		      AgenteMapa am;
+		    conditions
+		      am.getAgente().isPokemonsRecuperados() == true;
+		    actions
+		     // System.out.println("Voc� ganhou a batalha");
+		      am.getAgente().setCustoAcao(+150);
+		      modified(am);
+		  }
+		  
+		  rule AndarCima {
+		    declarations
+		      AgenteMapa am;
+		      Vector posicaoAtual;
+		    conditions
+		    	am.getAgente().getOrientacao() == 1;
+		    	( (am.getMapa()[am.getAgente().getPosicao().getX()][am.getAgente().getPosicao().getY() - 1].getTerreno() == 1 && 
+				  am.getAgente().temPokemonAgua()) ||
+		    	  (am.getMapa()[am.getAgente().getPosicao().getX()][am.getAgente().getPosicao().getY() - 1].getTerreno() == 5 && 
+				  am.getAgente().temPokemonFogo())
+				);
+		    actions
+		      System.out.println("O agente andou para cima");
+		      posicaoAtual = am.getAgente().getPosicao();
+		      Vector v = new Vector(posicaoAtual.getX(), posicaoAtual.getY() - 1);
+		      am.getAgente().setPosicao(v);
+		      am.getAgente().setCustoAcao(-1);
+		      am.getAgente().setDecisao(am.getAgente().ANDAR_ALEATORIAMENTE);
+		      modified(am);
+		  }
+		  
+		  rule AndarBaixo {
+		    declarations
+		      AgenteMapa am;
+		      Vector posicaoAtual;
+		    conditions
+		    	am.getAgente().getOrientacao() == 2;
+		    	( (am.getMapa()[am.getAgente().getPosicao().getX()][am.getAgente().getPosicao().getY() + 1].getTerreno() == 1 && 
+				  am.getAgente().temPokemonAgua()) ||
+		    	  (am.getMapa()[am.getAgente().getPosicao().getX()][am.getAgente().getPosicao().getY() + 1].getTerreno() == 5 && 
+				  am.getAgente().temPokemonFogo())
+				);
+		    actions
+		      System.out.println("O agente andou para baixo");
+		      posicaoAtual = am.getAgente().getPosicao();
+		      Vector v = new Vector(posicaoAtual.getX(), posicaoAtual.getY() + 1);
+		      am.getAgente().setPosicao(v);
+		      am.getAgente().setCustoAcao(-1);
+		      am.getAgente().setDecisao(am.getAgente().ANDAR_ALEATORIAMENTE);
+		      modified(am);
+		  }
+		  
+		  rule AndarDireita {
+		   declarations
+		      AgenteMapa am;
+		      Vector posicaoAtual;
+		    conditions
+		    	am.getAgente().getOrientacao() == 3;
+		    	( (am.getMapa()[am.getAgente().getPosicao().getX() + 1][am.getAgente().getPosicao().getY()].getTerreno() == 1 && 
+				  am.getAgente().temPokemonAgua()) ||
+		    	  (am.getMapa()[am.getAgente().getPosicao().getX() + 1][am.getAgente().getPosicao().getY()].getTerreno() == 5 && 
+				  am.getAgente().temPokemonFogo())
+				);
+		    actions
+		      System.out.println("O agente andou para direita");
+		      posicaoAtual = am.getAgente().getPosicao();
+		      Vector v = new Vector(posicaoAtual.getX() + 1, posicaoAtual.getY());
+		      am.getAgente().setPosicao(v);
+		      am.getAgente().setCustoAcao(-1);
+		      am.getAgente().setDecisao(am.getAgente().ANDAR_ALEATORIAMENTE);
+		      modified(am);
+		  }
+		  
+		  rule AndarEsquerda {
+		    declarations
+		      AgenteMapa am;
+		      Vector posicaoAtual;
+		    conditions
+		    	am.getAgente().getOrientacao() == 4;
+		    	( (am.getMapa()[am.getAgente().getPosicao().getX() - 1][am.getAgente().getPosicao().getY()].getTerreno() == 1 && 
+				  am.getAgente().temPokemonAgua()) ||
+		    	  (am.getMapa()[am.getAgente().getPosicao().getX() - 1][am.getAgente().getPosicao().getY()].getTerreno() == 5 && 
+				  am.getAgente().temPokemonFogo())
+				);
+		    actions
+		      System.out.println("O agente andou para esquerda");
+		      posicaoAtual = am.getAgente().getPosicao();
+		      Vector v = new Vector(posicaoAtual.getX() - 1, posicaoAtual.getY());
+		      am.getAgente().setPosicao(v);
+		      am.getAgente().setCustoAcao(-1);
+		      am.getAgente().setDecisao(am.getAgente().ANDAR_ALEATORIAMENTE);
+		      modified(am);
+		  }
+  }

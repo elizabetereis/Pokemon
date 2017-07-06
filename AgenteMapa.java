@@ -3,12 +3,15 @@ public class AgenteMapa
 {
 	protected Agente agente;
 	
-	protected MapaElemento mapa;
+	protected CelulaMapa[][] mapa;
+	
+	protected MapaElemento mapaElemento;
 
-	public AgenteMapa(Agente agente, MapaElemento mapa) {
+	public AgenteMapa(Agente agente, MapaElemento mapaElemento) {
 		super();
 		this.agente = agente;
-		this.mapa = mapa;
+		this.mapaElemento = mapaElemento;
+		this.mapa = mapaElemento.getMapa();
 	}
 
 	public Agente getAgente() {
@@ -19,12 +22,16 @@ public class AgenteMapa
 		this.agente = agente;
 	}
 
-	public MapaElemento getMapa() {
+	public CelulaMapa[][] getMapa() {
 		return mapa;
 	}
 
-	public void setMapa(MapaElemento mapa) {
+	public void setMapa(CelulaMapa[][] mapa) {
 		this.mapa = mapa;
+	}
+	
+	public MapaElemento getMapaElemento() {
+		return mapaElemento;
 	}
 	
 }

@@ -43,12 +43,18 @@ public class MapaElemento {
 			iPos++;
 		}
 		
+		Elemento e = new Elemento(TipoElemento.AGUA, new Vector(24, 19), "pokemon");
 		for(int i = 0; i < NUM_POKEMONS; i++){
 			Pokemon pokemonAux = pokemons.get(i);
 			pokemonAux.setPosicao(posicoes.get(iPos));
-			elementos.add(pokemonAux);
+			if(i == NUM_POKEMONS-1)
+				elementos.add(e);//int tipo, Vector posicao, String identificador
+			else 
+				elementos.add(pokemonAux);
 			iPos++;
 		}
+		
+	 new Elemento(TipoElemento.AGUA, new Vector(25, 19), "pokemon");
 		
 		return elementos;
 	}
@@ -72,7 +78,6 @@ public class MapaElemento {
 	public void criaMapa(){
 		
 		List<Elemento> elementos = geraElementos();
-		
 		for(int i = 0; i < TAM_MAPA; i++){ //preenche celulas com terreno correspondente
 			for(int j = 0; j < TAM_MAPA; j++){
 				mapa[i][j] = new CelulaMapa(terrenoMapa[i][j]);
@@ -143,12 +148,49 @@ public class MapaElemento {
 		return -1;
 	}
 	
+	public int existeElementoPosAtual(Vector posicao){
+		int col = posicao.getX();
+		int lin = posicao.getY();
+	
+		
+		if( (col > 0)  && (this.mapa[col][lin].temElemento())){
+			return this.mapa[col][lin].getElemento().getTipo();
+		}
+		
+		return -1;
+	}
+	
+	public boolean existePokemonProximo(Vector posicao){
+		
+		if(existeElementoPosAtual(posicao) >= 4 
+			|| existemElementosCima(posicao) >= 4 
+			|| existemElementosBaixo(posicao) >= 4 
+			|| existemElementosEsquerda(posicao) >= 4 
+			|| existemElementosDireita(posicao) >= 4)
+			
+			return true;
+		
+    	return false;
+	}
+	
+	public boolean existeElementoProximo(Vector posicao){
+		
+		if(existemElementosCima(posicao) > TipoElemento.NENHUM
+			|| existemElementosBaixo(posicao) > TipoElemento.NENHUM
+			|| existemElementosEsquerda(posicao) > TipoElemento.NENHUM
+			|| existemElementosDireita(posicao) > TipoElemento.NENHUM )
+			
+			return true;
+		
+    	return false;
+	}
+	
 	public void printMapa(){
 		
 		for(int i = 0; i < TAM_MAPA; i++){
 			for(int j = 0; j < TAM_MAPA; j++){
 				if(i == 24 && j == 19)
-					System.out.print("["+mapa[i][j].getElemento().getTipo()+"]");
+					System.out.print("***"+mapa[i][j].getElemento().getTipo()+"***");
 				System.out.print(mapa[i][j].getElemento().getTipo()+" ");
 			}
 			System.out.println();

@@ -3,24 +3,27 @@ public class Main {
 	
 	public static void main(String args[]) {
 	
-		Andar andarBase = new Andar();
-		Batalha batalhaBase = new Batalha();
-		Decisao decisaoBase = new Decisao();
-		UsarPokebola pokebolaBase = new UsarPokebola();
+		RegrasPokemon pokemonBase = new RegrasPokemon();
 		
 		Vector posInicial = new Vector(24,19);
 		int qtdInicialBolas = 25;
 		
-		Agente agente = new Agente("jogador", posInicial, qtdInicialBolas);
-		MapaElemento mapa = new MapaElemento();
+		AgenteMapa agenteMapa = new AgenteMapa(new Agente("jogador", posInicial, qtdInicialBolas), 
+				new MapaElemento());
 		
-		decisaoBase.tell(agente);
-		decisaoBase.tell(mapa);
-		decisaoBase.run();
+		pokemonBase.tell(agenteMapa); //tomada de decisão primeiro
+		pokemonBase.run();
+		
+		System.out.println("DecisaoBase "+agenteMapa.getAgente().getDecisao());
+		
+//		pokebolaBase.tell(agenteMapa);
+//		pokebolaBase.run();
+//		
+//		System.out.println("PokebolaBase "+agenteMapa.getAgente().getDecisao());
 		
 //		if(agente.getDecisao() == agente.ANDAR)
 //		{
-//			andarBase.tell(agente);
+//			andarBase.tell(agenteMapa);
 //			andarBase.run();
 //		}
 //		else if(agente.getDecisao() == agente.BATALHAR){
@@ -35,8 +38,7 @@ public class Main {
 //			batalhaBase.tell(agente);
 //		}
 //		else if(agente.getDecisao() == agente.USAR_POKEBOLA){
-//			pokebolaBase.tell(agente);
-//			pokebolaBase.run();
+
 //		}
 		
 	}

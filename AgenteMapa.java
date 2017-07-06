@@ -6,9 +6,12 @@ public class AgenteMapa
 	protected CelulaMapa[][] mapa;
 	
 	protected MapaElemento mapaElemento;
+	
+	private MapaView mapaView;
 
 	public AgenteMapa(Agente agente, MapaElemento mapaElemento) {
 		super();
+		mapaView = new MapaView();
 		this.agente = agente;
 		this.mapaElemento = mapaElemento;
 		this.mapa = mapaElemento.getMapa();
@@ -32,6 +35,10 @@ public class AgenteMapa
 	
 	public MapaElemento getMapaElemento() {
 		return mapaElemento;
+	}
+	
+	public void atualizaMapa(){ 
+		mapaView.alteraPosAgente(agente.getPosicao());
 	}
 	
 }

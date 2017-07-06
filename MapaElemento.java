@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import com.sun.org.apache.bcel.internal.generic.RETURN;
-
 public class MapaElemento {
 	
 	public final static int NUM_CENTROS = 20;
@@ -28,7 +26,6 @@ public class MapaElemento {
 		celulaComElemento = -1;
 		terrenoMapa = new Matriz().getMatriz(); //pega terrenos vindos do arquivo de texto
 		criaMapa();
-		printMapa();
 	}
 	
 	public List<Elemento> geraElementos(){

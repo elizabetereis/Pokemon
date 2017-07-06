@@ -1,10 +1,13 @@
 
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
+import javafx.scene.control.Button;
 
 public class MapaView extends JFrame{
     
@@ -15,22 +18,48 @@ public class MapaView extends JFrame{
     private final int CAVERNA = 4;
     private final int VULCAO = 5;
     JPanel panelTab;
-
+    
+    private Vector posAgenteMapa;
+    private JButton buttonPos;
+    
     MapaView(){
         
     	super("Jogo Pokemon");
-        
+ 	   	
+    	this.posAgenteMapa = new Vector(24,19);
+    	this.buttonPos = new JButton();
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
         this.setSize(1000,500); 
         confPanelTab();
         this.setVisible(true);
     }
     
+    public JButton[][] getVisualMapa(){
+    	
+    	return mapa;
+    }
+    
     private void confPanelTab(){
         panelTab = new JPanel(new GridLayout(42,42)); 
         criaMapaTerrenos();
+        addAgente();
         this.add(panelTab); 
     }
+    
+   public void addAgente(){
+	   buttonPos = mapa[posAgenteMapa.x][posAgenteMapa.y];
+    	mapa[posAgenteMapa.x][posAgenteMapa.y].setIcon(new javax.swing.ImageIcon(getClass()
+    			.getResource("pokemonicon.png")));
+    }
+    
+   public void alteraPosAgente(Vector pos){
+	   
+	   mapa[posAgenteMapa.x][posAgenteMapa.y] = buttonPos;
+	   posAgenteMapa = pos;
+	   buttonPos = mapa[pos.x][pos.y];
+	   mapa[pos.x][pos.y].setIcon(new javax.swing.ImageIcon(getClass()
+   				.getResource("pokemonicon.png")));
+   }
     
     private void criaMapaTerrenos(){
         
